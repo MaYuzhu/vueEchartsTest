@@ -53,7 +53,7 @@
     <div id="aaa" style="width:500px;height:400px;"></div>
     <span style="font-size:18px;font-weight:bold">{{username}}</span>
     <testEmit @_setuser="getuser"></testEmit>
-<div>{{optionV}}</div>
+    <div class="bg">{{optionV}}</div>
     <div style="font-size:20px;margin:5px;background:lightgrey" v-for="(item,index) in text0">{{item.text}}</div>
   </div>
 </template>
@@ -419,6 +419,10 @@
 </script>
 
 <style lang="stylus" scoped>
-
+  .bg
+    width 300px
+    height 200px
+    background-image url("../../../static/imgs/arrows.png")
+    background-size 100% auto
 
 </style>
