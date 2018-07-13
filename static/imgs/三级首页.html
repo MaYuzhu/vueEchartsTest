@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/third_home_page.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>三级首页</title>
+  <link href="./三级首页_files/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="./三级首页_files/reset.css">
+  <link rel="stylesheet" href="./三级首页_files/base.css">
+  <style media="screen">
+
+  </style>
+  <script src="./三级首页_files/jquery.min.js"></script>
+  <script src="./三级首页_files/echarts.js"></script>
+  <script src="./三级首页_files/gauge.js"></script>
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+  <!-- logo页头 -->
+  <div class="container-fluid home_page_header">
+    <div class="container pp">
+      <div class="row">
+        <div class="col-md-6 sm_logo">
+          <img src="./三级首页_files/sm_logo.png" alt="">
+          <span class="logo_span">铁路客站结构健康监测平台</span>
+        </div>
+        <div class="col-md-6 name name_11">
+          <p>
+            <a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/third_home_page.html#">用户名：admin</a>
+            <a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/login.html" class="zhuxiao">注销</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 页面导航 -->
+  <div class="home_page_nav container-fluid">
+    <div class="container">
+      <nav class="navbar navbar-default">
+
+        <!--  移动端导航 -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/third_home_page.html#" class="shouye">首页</a></li>
+            <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/monitoring_data.html">监测数据<span class="sr-only">(current)</span></a></li>
+            <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/data_early_warning.html">数据预警</a></li>
+            <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/device_manage.html">设备管理</a></li>
+            <li class="dropdown">
+              <a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/third_home_page.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        监测报告
+                  </a>
+              <ul class="dropdown-menu">
+                <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/third_home_page.html#">生成报告</a></li>
+                <!-- <li role="separator" class="divider"></li> -->
+                <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/third_home_page.html#">数据导出</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/third_home_page.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        综合管理
+                  </a>
+              <ul class="dropdown-menu">
+                <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/early_warning_push.html">预警推送</a></li>
+                <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/import.html">数据导入</a></li>
+                <!-- <li role="separator" class="divider"></li> -->
+                <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/threshold_value.html">阈值设置</a></li>
+                <!-- <li role="separator" class="divider"></li> -->
+                <li><a href="file:///Users/cicimichelle/jj/Rainway_monitoring/Code/railway_monitoring/permission.html">权限管理</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- 站名  -->
+  <div class="container-fluid">
+    <div class="container zhan_name">
+      <p>济南站</p>
+    </div>
+  </div>
+  <!-- 页面主要内容 -->
+  <div class="container sanji_container">
+    <div class="row">
+      <!-- 左 -->
+      <div class="left_sanji col-md-8" id="app">
+        <div class="imgs">
+          <img class="img_1" src="./三级首页_files/u9.png" alt="" display="none">
+          <img class="img_2" src="./三级首页_files/u31.png" alt="">
+          <img class="img_3 img-responsive" src="./三级首页_files/u33.png" alt="">
+        </div>
+        <div class="buttons">
+            <button class="button_01"><img class="img-responsive" src="./三级首页_files/u90.png" alt=""></button>
+            <button class="button_02"><img class="img-responsive" src="./三级首页_files/u88.png" alt=""></button>
+            <button class="button_03"><img class="img-responsive" src="./三级首页_files/u33.png" alt=""></button>
+        </div>
+      </div>
+      <!-- 右 -->
+        <div class="right_sanji col-md-4">
+          <!-- 仪表盘 -->
+          <div class="gauge_third_home_page">
+            <div id="main_1" _echarts_instance_="ec_1523156692345" style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative;"><div style="position: relative; overflow: hidden; width: 168px; height: 140px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="336" height="280" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 140px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
+            <div id="main_01" _echarts_instance_="ec_1523156692346" style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative;"><div style="position: relative; overflow: hidden; width: 168px; height: 140px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="336" height="280" style="position: absolute; left: 0px; top: 0px; width: 168px; height: 140px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
+          </div>
+          <!-- 结构分析 -->
+          <div class="table_third_home_page table_01">
+            <p>结构分析</p>
+            <table class="table table_a">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>变形</th>
+                  <th>应力应变</th>
+                  <th>震动</th>
+                  <th>温度场</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>站房屋盖</td>
+                  <td>
+                    <div class="red"></div>
+                  </td>
+                  <td>
+                    <div class="yellow"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>站房轨道层</td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                  <td>
+                    <div class="yellow"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>无站台柱钢结<br>构雨棚</td>
+                  <td>
+                    <div class="red"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- 外部环境 -->
+          <div class="table_third_home_page table_01">
+            <p>外部环境</p>
+            <table class="table table_a">
+              <thead>
+                <tr>
+                  <th>风力</th>
+                  <th>雨量</th>
+                  <th>气温</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="red"></div>
+                  </td>
+                  <td>
+                    <div class="yellow"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                  <td>
+                    <div class="yellow"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="red"></div>
+                  </td>
+                  <td>
+                    <div class="yellow"></div>
+                  </td>
+                  <td>
+                    <div class="green"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+
+<script src="./三级首页_files/bootstrap.min.js"></script>
+
+
+</body></html>

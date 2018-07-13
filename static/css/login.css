@@ -1,0 +1,149 @@
+* {
+  font-family: "Microsoft Yahei";
+}
+html,
+body,
+main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #eee;
+}
+.home_page_header {
+  position: relative;
+  background-color: #333;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  display: flex;
+  align-items: center;
+}
+.home_page_header .logo_span {
+  color: #fff;
+  font-size: 24px;
+  vertical-align: middle;
+}
+.home_page_header .name {
+  font-size: 13px;
+  padding-right: 33px;
+}
+.home_page_header .name a {
+  color: #fff;
+}
+.home_page_header .name p {
+  text-align: right;
+  padding-top: 3px;
+}
+.home_page_header .name .zhuxiao {
+  margin-left: 18px;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .img_bg {
+  position: relative;
+}
+.main .content {
+  width: 276px;
+  height: 282px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 144px;
+  right: 104px;
+  border-radius: 14px;
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.06);
+}
+.main .content .login_header {
+  height: 43px;
+  background-color: #88c870;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+.main .content section {
+  height: 167px;
+  padding-left: 38px;
+  padding-right: 38px;
+  margin-top: 33px;
+}
+.main .content section form #J_Message {
+  color: #D64848;
+  text-align: right;
+  padding-right: 10px;
+  margin-bottom: 1px;
+  visibility: hidden;
+}
+.main .content section form .username_field,
+.main .content section form .password_field {
+  position: relative;
+}
+.main .content section form .username_field {
+  margin-bottom: 22px;
+}
+.main .content section form .password_field {
+  margin-bottom: 25px;
+}
+.main .content section form #username,
+.main .content section form #password {
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #d5d5d5;
+  border-radius: 15px;
+  padding: 6px 10px 6px 50px;
+  width: 200px;
+  float: none;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: '\5b8b\4f53';
+  text-indent: 4px;
+  color: #4e4d4d;
+}
+.main .content section form .username_field label,
+.main .content section form .password_field label {
+  position: absolute;
+  z-index: 3;
+  width: 39px;
+  height: 20px;
+  border-right: 1px solid #eee;
+  color: #aaa;
+  font-weight: normal;
+  margin: 0;
+  top: 5px;
+  left: 12px;
+  padding-top: 4px;
+}
+.main .content section form .auto_login label {
+  margin-left: 4px;
+  font-weight: normal;
+  color: #aaa;
+}
+.main .content section form .auto_login .input2 {
+  margin-left: 6px;
+}
+.main .content section form .auto_login span {
+  margin-left: 35px;
+  color: #D64848;
+  visibility: hidden;
+}
+.main .content section form button {
+  width: 200px;
+  height: 30px;
+  background-color: #66bb46;
+  border-radius: 15px;
+  border: 0;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #f5fbf3;
+}
+.main .content section form footer {
+  height: 38px;
+  line-height: 38px;
+  text-align: right;
+  color: #6a6a6a;
+}
+.main .content section form footer a {
+  color: #aaa;
+}
+.main .content section form footer a:hover {
+  color: #66bb46;
+}
