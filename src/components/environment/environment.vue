@@ -51,9 +51,18 @@
                 v-bind:deviceName='devOption'
                 @_option="getOption"></devOption>
     <div id="aaa" style="width:500px;height:400px;"></div>
+    <div id="bbb" style="width:500px;height:400px;"></div>
     <span style="font-size:18px;font-weight:bold">{{username}}</span>
+    <p v-for="(item, index) in testNum"
+       :class="colorClasses[item>10&&item<20?0:item>20&&item<30?1:2]">{{item}}</p>
     <testEmit @_setuser="getuser"></testEmit>
     <div class="bg">{{optionV}}</div>
+    <div class="title_jianbian">
+
+      <div class="jianbianbg">
+        <div class="title_p">渐变标题背景</div>
+      </div>
+    </div>
     <div style="font-size:20px;margin:5px;background:lightgrey" v-for="(item,index) in text0">{{item.text}}</div>
   </div>
 </template>
@@ -74,7 +83,9 @@
         sele:{
           /*'风力计1': true,
           '风力计2': true*/
-        }
+        },
+        testNum:[11,13,22,25,30,36,40],
+        colorClasses:['red1','yellow1','green1']
       }
     },
     mounted(){
@@ -89,6 +100,75 @@
         }
       })
       this._ajax()
+      var myChart = vm.$echarts.init(document.getElementById('bbb'));
+      // 指定图表的配置项和数据
+      var option = {
+        title: {
+          text: '资源总览',
+          left:'20px',
+          textStyle: {
+            color: "#436EEE",
+            fontSize: 17,
+          }
+        },
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          itemWidth:15,
+          itemHeight:15,
+          data:['可用'],
+        },
+        xAxis: {
+          data: ["网络设备","服务器","应用","其他","虚拟机","存储"],
+          splitLine:{
+            show:false,
+          },
+        },
+        yAxis: {
+          splitLine:{
+            show:false,
+          },
+        },
+        series: [{
+          name: '可用',
+          type: 'bar',
+          stack:'使用情况',
+          data: [85, 40, 30, 15, 90, 78],
+          itemStyle: {
+            color: function(params) {
+// build a color map as your need.
+              var colorList = ['#eeeeee', '#3397c9','#f39646','#e02222'];
+              if (params.data ==0) {
+                return colorList[0];
+              } else if (params.data > 0 && params.data <= 20) {
+                return colorList[1];
+              } else if (params.data > 20 && params.data <= 50) {
+                return colorList[2];
+              }
+              else if (params.data > 50) {
+                return colorList[3];
+              }}
+            /*normal: {
+             color: "#70BB3D",
+             lineStyle: {
+             color: "#70BB3D"
+             }
+             }*/
+          },
+        },
+        {
+          name: '不可用',
+          type: 'bar',
+          stack:'使用情况',
+          data: [15, 60, 70, 85, 10, 22],
+          itemStyle:{
+            normal:{color:"rgba(90,20,20,.1)"},
+          }
+        }]
+      };
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
     },
     methods:{
       getuser(msg){
@@ -325,8 +405,8 @@
               },
               xAxis : [
                 {
-                  //type : 'category',
-                  type:'value',
+                  type : 'category',
+                  //type:'value',
                   //boundaryGap : false,
                   data : data.data.x
                 }
@@ -334,8 +414,8 @@
               yAxis : [
                 {
                   position:'right',
-                  type : 'category',
-                  //type : 'value',
+                  //type : 'category',//柱状图横向
+                  type : 'value',
                   //splitArea : {show : true}
                 }
               ],
@@ -350,12 +430,25 @@
                   barWidth: 20,
                   //type:'line',
                   itemStyle: {
-                    normal: {
+                    color: function(params) {
+// build a color map as your need.
+                      var colorList = ['#eeeeee', '#3397c9','#f39646','#e02222'];
+                      if (params.data ==0) {
+                        return colorList[0];
+                      } else if (params.data > 0 && params.data <= 10) {
+                        return colorList[1];
+                      } else if (params.data > 10 && params.data <= 30) {
+                        return colorList[2];
+                      }
+                      else if (params.data > 30) {
+                        return colorList[3];
+                      }}
+                    /*normal: {
                       color: "#70BB3D",
                       lineStyle: {
                         color: "#70BB3D"
                       }
-                    }
+                    }*/
                   },
                   stack: '1',
                   //areaStyle: {normal: {}},
@@ -383,17 +476,38 @@
                   name:'风力计2',
                   //symbol:'none',  //这句就是去掉点的
                   smooth:true,  //这句就是让曲线变平滑的
-                  //type:'line',
-                  type:'bar',
+                  type:'line',
+                  //type:'bar',
                   barWidth: 10,
                   itemStyle: {
-                    normal: {
+                    /*normal: {
                       color: "#aaaaaa",
                       lineStyle: {
                         color: "#aaaaaa"
                       }
-                    }
-                  },
+                    },*/
+                  normal: {areaStyle: {type: 'default',
+                    color: new vm.$echarts.graphic.LinearGradient(
+                      0, 0, 0, 1,
+                      [
+                        {offset: 0, color: 'red'},
+                        {offset: 0.5, color: 'pink'},
+                        {offset: 1, color: 'rgba(200,200,200,.3)'}
+                      ]
+                    )
+                        }}}
+                    /*lineStyle:{
+                      color: new vm.$echarts.graphic.LinearGradient(
+                        0, 0, 0, 1,
+                        [
+                          {offset: 0, color: 'red'},
+                          {offset: 0.5, color: 'pink'},
+                          {offset: 1, color: '#ddd'}
+                        ]
+                      )
+                    }*/,
+
+
                   stack: '2',
                   //areaStyle: {normal: {}},
                   data:data.data.wind2
@@ -422,7 +536,45 @@
   .bg
     width 300px
     height 200px
-    background-image url("../../../static/imgs/arrows.png")
-    background-size 100% auto
+    border 1px solid
+    //background-image url("../../../static/imgs/arrows.png")
+    background-size auto 100%
+    background-repeat repeat-x
+    background-image: url("../../../static/imgs/logo.png")
+    margin-bottom:0px;
+    margin-top:0px;
+    margin-left:0px;
+    margin-right:0px;
+    z-index:-1;
+  .red1
+    color red
+  .yellow1
+    color yellow
+  .green1
+    color green
+  .title_jianbian
+    width 300px
+    height 50px
+    background:#182142
+    //box-shadow 0 0 1px 1px #f00
+    //background  linear-gradient(to right,rgba(255,255,255,0.1),rgba(255,255,255,0.5),rgba(255,255,255,0.1))
+
+
+    >.jianbianbg
+      width 60%
+      height 0px
+      //margin 0px auto
+      //line-height 30px
+      //text-align center
+      transform translate(20px,20px)
+      box-shadow 0 0 40px 10px #5277e3
+      //background  linear-gradient(to top,rgba(255,255,255,0.1),rgba(255,255,255,0.5),rgba(255,255,255,0.1))
+
+      >.title_p
+        //font-size 20px
+        color white
+        //height 20px
+        //background  linear-gradient(to right,rgba(255,255,255,0.1),rgba(255,255,255,0.5),rgba(255,255,255,0.1))
+
 
 </style>

@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import login from '../pages/login/login'
-import thirdHomePage from '../pages/home/third_home_page'
-import secondHomePage from '../pages/home/second_home_page'
-import monitoring_data from '../pages/monitoring_data/monitoring_data'
-import data_early_warning from '../pages/data_early_warning/data_early_warning'
-import device_manage from '../pages/device_manage/device_manage'
-import jiegou_fenxi from '../pages/jiegou_fenxi/jiegou_fenxi'
+import login from '../pages/login/login.vue'
+import thirdHomePage from '../pages/home/third_home_page.vue'
+import secondHomePage from '../pages/home/second_home_page.vue'
+import monitoring_data from '../pages/monitoring_data/monitoring_data.vue'
+import data_early_warning from '../pages/data_early_warning/data_early_warning.vue'
+import device_manage from '../pages/device_manage/device_manage.vue'
+import jiegou_fenxi from '../pages/jiegou_fenxi/jiegou_fenxi.vue'
 
-
+import testHome from '../pages/testHome.vue'
 
 Vue.use(Router)
 
@@ -18,6 +18,13 @@ export default new Router({
 
 
   routes: [
+    {
+      path:'/test',
+      component:testHome,
+      meta:{
+        showHeader:false
+      }
+    },
     {
       path:'/',
       component:login,
