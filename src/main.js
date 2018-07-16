@@ -8,6 +8,7 @@ import store from './store'
 import $ from 'jquery'
 
 import './mock/index'
+import 'babel-polyfill'//兼容IE11-？
 
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts

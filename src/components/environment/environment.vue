@@ -52,16 +52,17 @@
                 @_option="getOption"></devOption>
     <div id="aaa" style="width:500px;height:400px;"></div>
     <div id="bbb" style="width:500px;height:400px;"></div>
-    <span style="font-size:18px;font-weight:bold">{{username}}</span>
-    <p v-for="(item, index) in testNum"
+    <span style="font-size:18px;font-weight:bold;font-family:lcdfont">{{username}}</span>
+    <p v-for="(item, index) in testNum" style="font-size:30px"
        :class="colorClasses[item>10&&item<20?0:item>20&&item<30?1:2]">{{item}}</p>
+    <span class="lcd">1234567890</span><br/>
+    <span class="lcd2">1234567890</span>
     <testEmit @_setuser="getuser"></testEmit>
     <div class="bg">{{optionV}}</div>
     <div class="title_jianbian">
-
-      <div class="jianbianbg">
-        <div class="title_p">渐变标题背景</div>
-      </div>
+      <div class="xiaoqiu"></div>
+      <div class="jianbianbg"></div>
+      <div class="title_p">渐变标题背景</div>
     </div>
     <div style="font-size:20px;margin:5px;background:lightgrey" v-for="(item,index) in text0">{{item.text}}</div>
   </div>
@@ -533,6 +534,32 @@
 </script>
 
 <style lang="stylus" scoped>
+  @font-face{
+    font-family: 'lcdfont';
+    src: url('../../../static/css/lcdfont/alarm_clock-webfont.woff'); /* IE9 Compat Modes */
+    src: url('../../../static/css/lcdfont/alarm_clock-webfont.woff?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../../static/css/lcdfont/alarm_clock-webfont.woff') format('woff'), /* Modern Browsers */
+    url('../../../static/css/lcdfont/alarm_clock.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../../../static/css/lcdfont/alarm_clock-webfont.woff') format('svg'); /* Legacy iOS */
+
+  }
+  @font-face{
+    font-family: 'lcdfont2';
+    src: url('../../../static/css/lcdfont2/ds-digit-webfont.woff'); /* IE9 Compat Modes */
+    src: url('../../../static/css/lcdfont2/ds-digit-webfont.woff?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('../../../static/css/lcdfont2/ds-digit-webfont.woff') format('woff'), /* Modern Browsers */
+      url('../../../static/css/lcdfont2/ds-digit-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+      url('../../../static/css/lcdfont2/ds-digit-webfont.woff') format('svg'); /* Legacy iOS */
+
+  }
+
+  .lcd
+    font-family lcdfont
+    font-size 35px
+  .lcd2
+    font-family lcdfont2
+    font-size 35px
+    color #122b40
   .bg
     width 300px
     height 200px
@@ -548,33 +575,47 @@
     z-index:-1;
   .red1
     color red
+    //font-family:'DS-Digital'
+    font-family:'lcdfont2'
   .yellow1
     color yellow
+    //font-family:'DS-Digital'
+    font-family:'lcdfont2'
   .green1
     color green
+    //font-family:'DS-Digital'
+    font-family:'lcdfont2'
   .title_jianbian
     width 300px
     height 50px
     background:#182142
     //box-shadow 0 0 1px 1px #f00
     //background  linear-gradient(to right,rgba(255,255,255,0.1),rgba(255,255,255,0.5),rgba(255,255,255,0.1))
-
-
+    >.xiaoqiu
+      width 10px
+      height 10px
+      background linear-gradient(to right, rgb(238,45,36),rgb(241,90,36),rgb(241,90,36))
+      border-radius 50%
+      box-shadow 0 0 10px 1px rgba(238,45,36,.9)
     >.jianbianbg
-      width 60%
-      height 0px
+      width 30%
+      height 20px
       //margin 0px auto
       //line-height 30px
       //text-align center
-      transform translate(20px,20px)
-      box-shadow 0 0 40px 10px #5277e3
-      //background  linear-gradient(to top,rgba(255,255,255,0.1),rgba(255,255,255,0.5),rgba(255,255,255,0.1))
 
-      >.title_p
-        //font-size 20px
-        color white
-        //height 20px
-        //background  linear-gradient(to right,rgba(255,255,255,0.1),rgba(255,255,255,0.5),rgba(255,255,255,0.1))
+      transform translate(104px,20px)
+      //box-shadow 0 0 40px 10px #5277e3
+      box-shadow 0 0 100px 10px rgba(26,34,67,0.1)
+      //background  linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0))
+      background  radial-gradient(circle,rgba(255,255,255,0.5),rgba(255,255,255,0))
+      filter blur(2px)
+    >.title_p
+      text-align center
+      font-size 16px
+      color white
+      //height 20px
+
 
 
 </style>
