@@ -547,9 +547,9 @@
     font-family: 'lcdfont2';
     src: url('../../../static/css/lcdfont2/ds-digit-webfont.woff'); /* IE9 Compat Modes */
     src: url('../../../static/css/lcdfont2/ds-digit-webfont.woff?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-      url('../../../static/css/lcdfont2/ds-digit-webfont.woff') format('woff'), /* Modern Browsers */
-      url('../../../static/css/lcdfont2/ds-digit-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
-      url('../../../static/css/lcdfont2/ds-digit-webfont.woff') format('svg'); /* Legacy iOS */
+    url('../../../static/css/lcdfont2/ds-digit-webfont.woff') format('woff'), /* Modern Browsers */
+    url('../../../static/css/lcdfont2/ds-digit-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../../../static/css/lcdfont2/ds-digit-webfont.woff') format('svg'); /* Legacy iOS */
 
   }
 
