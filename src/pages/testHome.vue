@@ -331,12 +331,14 @@
       isIE()
      //背景高度满屏
      var bodyH = document.body.offsetHeight
-     var bigH = document.querySelector(".content_big").scrollHeight
+     var bigH = $(".content_big").outerHeight()
+      console.log(bodyH,bigH)
      if(bodyH>bigH){
-       //alert(1)
+       alert(1)
        $('.bg').css('height',bodyH)
+
      }else {
-       //alert(0)
+       alert(0)
        $('.bg').css('height',768)
      }
      this._jiance()
@@ -678,6 +680,8 @@
     background-repeat no-repeat
     width 100%
     min-width 1200px
+    border solid 1px #00f
+
     .content_big
       width 1200px
       margin 0 auto
@@ -775,8 +779,6 @@
                 height 22px
         .center
           width 580px
-          height 300px
-
           .center_top
             width 580px
             height 388px
@@ -785,7 +787,7 @@
             background-size 100% 100%
           .center_bottom
             width 580px
-            height 224px
+            height 244px
             th
               font-size 18px
               color #fff
@@ -811,8 +813,6 @@
               float right
         .right
           width 326px
-          height 300px
-
           .right_top
             position relative
             width 326px
