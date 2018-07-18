@@ -1,6 +1,5 @@
 <template>
   <div class="bg">
-    <div class="abc"></div>
     <div class="content_big">
       <header>
         <img src="../../static/homeImage/logo.png" alt="">
@@ -154,7 +153,11 @@
             </ul>
           </div>
           <div class="left_bottom">
-
+            <p>各站监测状态</p>
+            <div id="city_jiance"></div>
+            <ul>
+              <li v-for="(item,index) in cityDataV" :value="index">{{item}}%</li>
+            </ul>
           </div>
         </div>
         <div class="center">
@@ -294,8 +297,14 @@
             <img class="line" style="top:190px" src="../../static/homeImage/line.png" alt="">
             <img class="line" style="top:212px" src="../../static/homeImage/line.png" alt="">
           </div>
-          <div class="right_center"></div>
-          <div class="right_bottom"></div>
+          <div class="right_center">
+            <p>变形异常</p>
+            <div id="city_bian"></div>
+          </div>
+          <div class="right_bottom">
+            <p>应力应变异常</p>
+            <div id="city_ying"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -305,12 +314,24 @@
 
 <script>
 	export default {
+	  data(){
+	    return{
+	      cityDataV : [85, 40, 30, 15, 30, 40, 90, 78],
+        cityData : ["潍坊","青岛","烟台","济南","临沂","泰安","菏泽","临清"]
+      }
+    },
 	  mounted(){
-	    //document.getElementById("inner").scrollHeight
-     var bodyW = document.body.offsetWidth
+      function isIE() { //ie?
+        if (!!window.ActiveXObject || "ActiveXObject" in window){
+          //alert(1111111)
+          $('.title_p').html('<span>铁路客站结构健康检测平台</span>')
+          $('.title_p span').css("color","white")
+        }
+      }
+      isIE()
+     //背景高度满屏
      var bodyH = document.body.offsetHeight
      var bigH = document.querySelector(".content_big").scrollHeight
-      //console.log(bodyH,bigH)
      if(bodyH>bigH){
        //alert(1)
        $('.bg').css('height',bodyH)
@@ -318,16 +339,326 @@
        //alert(0)
        $('.bg').css('height',768)
      }
-      if(bodyW<1200){
-        //alert(1)
-        $('.bg').css('width',1300)
-      }else {
-        //alert(0)
-        $('.bg').css('width','100%')
-      }
-      /*$(window).resize(function () {
-        $('.abc').html($(window).width())
-      })*/
+     this._jiance()
+     this._bian()
+     this._ying()
+    },
+    methods:{
+	    _jiance(){
+	      let vm = this
+
+        let myChart = vm.$echarts.init(document.getElementById('city_jiance'));
+        // 指定图表的配置项和数据
+        let option = {
+          //提示框
+          tooltip: {
+            trigger: "axis",
+            formatter:'{b1}: {c1}%'
+          },
+          grid: {
+            top:'10',
+            left: '5%',
+            right: '12%',
+            bottom: '24%',
+            containLabel: true
+          },
+          xAxis: {
+            type : 'value',
+            show:true,
+            axisTick: {
+              show: false
+            },
+            axisLine:{
+              lineStyle:{
+                color: '#fff'
+              },
+            },
+            axisLabel:{
+              show:false,
+              color:'#fff',
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            splitLine:{
+              show:false,
+            },
+          },
+          yAxis: {
+            type : 'category',
+            axisTick: {
+              show: false
+            },
+            axisLine:{
+              lineStyle:{
+                color: '#fff'
+              },
+            },
+
+            axisLabel:{
+              color:'#fff',
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            data:this.cityData.reverse(),
+            splitLine:{
+              show:false,
+            },
+          },
+          series: [
+            {
+              name: '',
+              type: 'bar',
+              stack:'健康情况1',
+              barWidth: 12,
+              barGap:'-100%',
+              data: [100, 100, 100, 100, 100, 100, 100, 100],
+              //data: [15, 60, 70, 85, 70, 60, 10, 22],
+              itemStyle:{
+                normal:{
+                  color:"rgba(0,210,233,0.2)",
+                },
+              }
+            },
+            {
+            name: '',
+            type: 'bar',
+            stack:'健康情况',
+            barWidth: 12,
+            data: [85, 40, 30, 15, 30, 40, 90, 78].reverse(),
+            itemStyle: {
+              normal : {
+                label: {
+                  show: false,
+                  position: 'right',
+                  textStyle: {
+                    color: '#fff'
+                  }
+                },
+
+                color: function(params) {
+                  var colorList = ['#ed1e79', '#fcee21','#00d2e9'];
+                  if (params.data <= 20) {
+                    return colorList[0];
+                  } else if (params.data > 20 && params.data <= 40) {
+                    return colorList[1];
+                  } else if (params.data > 40) {
+                    return colorList[2];
+                  }
+                }
+              },
+
+
+
+            },
+          },
+
+          ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+      },
+      _bian(){
+        let vm = this
+        let myChart = vm.$echarts.init(document.getElementById('city_bian'));
+        let option = {
+          //提示框
+          tooltip: {
+            trigger: "axis",
+            formatter:'{b0}: {c0}%'
+          },
+          grid: {
+            top:'10',
+            left: '5%',
+            right: '7%',
+            bottom: '28%',
+            containLabel: true
+          },
+          xAxis: {
+            type : 'category',
+            show:true,
+            data:this.cityData,
+            boundaryGap : false,
+            axisTick: {
+              show: false
+            },
+            axisLine:{
+              lineStyle:{
+                color: '#fff'
+              },
+            },
+            axisLabel:{
+              interval:0,
+              show:true,
+              color:'#fff',
+              textStyle: {
+                color: '#fff',
+                fontSize: 12
+              }
+            },
+            splitLine:{
+              show:false,//网格线
+            },
+          },
+          yAxis: {
+            type : 'value',
+            axisTick: {
+              show: false
+            },
+            axisLine:{
+              lineStyle:{
+                color: '#fff'
+              },
+            },
+            axisLabel:{
+              color:'#fff',
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            data:this.cityData,
+            splitLine:{
+              show:false,
+            },
+          },
+          series: [
+            {
+              name: '',
+              type: 'line',
+              stack:'健康情况',
+              barWidth: 12,
+              data: [85, 40, 30, 15, 30, 40, 90, 78],
+              itemStyle: {
+                normal: {
+                  color: '#06beff',
+                  lineStyle: {
+                    color: '#06beff',
+                  },
+                  areaStyle:
+                    {type: 'default',
+                      color: new vm.$echarts.graphic.LinearGradient(
+                        0, 0, 0, 1,
+                        [
+                          {offset: 0, color: 'rgba(6,190,255,.9)'},
+                          {offset: 0.5, color: 'rgba(6,190,255,.4)'},
+                          {offset: 1, color: 'rgba(6,190,255,.1)'}
+                        ]
+                      )
+                    }
+                },
+
+              },
+            },
+
+          ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+      },
+      _ying(){
+        let vm = this
+        let myChart = vm.$echarts.init(document.getElementById('city_ying'));
+        let option = {
+          //提示框
+          tooltip: {
+            trigger: "axis",
+            formatter:'{b0}: {c0}%'
+          },
+          grid: {
+            top:'10',
+            left: '5%',
+            right: '7%',
+            bottom: '18%',
+            containLabel: true
+          },
+          color:['#ed1e79'],
+          legend: {
+            itemWidth:12,
+            itemHeight:12,
+            x:260,
+            y:-6,
+            textStyle:{//图例文字的样式
+              color:'#fff',
+              fontSize:12
+            },
+            data:[{
+              name:'变形',
+              icon:'rect',
+              color:'red',
+            }],
+          },
+          xAxis: {
+            type : 'category',
+            show:true,
+            data:this.cityData,
+            boundaryGap : true,//和y轴有距离
+            axisTick: {
+              show: false
+            },
+            axisLine:{
+              lineStyle:{
+                color: '#fff'
+              },
+            },
+            axisLabel:{
+              interval:0,
+              show:true,
+              color:'#fff',
+              textStyle: {
+                color: '#fff',
+                fontSize: 12
+              }
+            },
+            splitLine:{
+              show:false,//网格线
+            },
+          },
+          yAxis: {
+            type : 'value',
+            axisTick: {
+              show: false
+            },
+            axisLine:{
+              lineStyle:{
+                color: '#fff'
+              },
+            },
+            axisLabel:{
+              color:'#fff',
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            data:this.cityData,
+            splitLine:{
+              show:false,
+            },
+          },
+          series: [
+            {
+              name: '变形',
+              type: 'line',
+              stack:'健康情况',
+              symbol:'none',  //去掉点的
+              smooth:true,  //让曲线变平滑
+              barWidth: 12,
+              data: [85, 40, 30, 15, 30, 40, 90, 78],
+              itemStyle: {
+                normal: {
+                  lineStyle: {
+                    width:3,
+                    color: '#ed1e79',
+                  },
+                },
+              },
+            },
+
+          ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+      },
     }
   }
 </script>
@@ -350,6 +681,8 @@
     .content_big
       width 1200px
       margin 0 auto
+      padding-right 10px
+      box-sizing border-box
       header
         position relative
         img
@@ -366,16 +699,17 @@
           letter-spacing 1px
           span
             background: linear-gradient(to right, #fff, #fff, #979797)
-            -webkit-background-clip: text
-            color: transparent
+            -webkit-background-clip text
+            color transparent
+
       .content_wrap
         display flex
         justify-content space-between
         .left
-          width 288px
           .left_top
             height 314px
             display flex
+            width 288px
             >div
               width 18px
               height 270px
@@ -420,9 +754,25 @@
           .left_bottom
             width 270px
             height 244px
-            margin 60px 0 0px 18px
+            margin 60px 0 0 18px
             background-image url("../../static/homeImage/kuang1.png")
             background-size 100% 100%
+            >p
+              font-size 18px
+              padding 10px 10px
+              float left
+              color #fff
+              background url("../../static/homeImage/titlebg.png")
+              background-position center
+              background-size 130% 150%
+            >#city_jiance
+              height 244px
+            >ul
+              width 30px
+              color #fff
+              transform translate(240px, -189px)
+              >li
+                height 22px
         .center
           width 580px
           height 300px
@@ -477,9 +827,11 @@
               color #fff
               background url("../../static/homeImage/titlebg.png")
               background-position center
-              background-size 150% 155%
+              background-size 130% 150%
+
             table
               position absolute
+              width 289px
               top 26px
               left 14px
               th
@@ -528,4 +880,14 @@
             margin 12px auto
             background-image url("../../static/homeImage/kuang4.png")
             background-size 100% 100%
+            >p
+              font-size 18px
+              padding 10px 10px
+              float left
+              color #fff
+              background url("../../static/homeImage/titlebg.png")
+              background-position center
+              background-size 130% 150%
+            #city_bian,#city_ying
+              height 140px
 </style>

@@ -137,6 +137,15 @@
           stack:'使用情况',
           data: [85, 40, 30, 15, 90, 78],
           itemStyle: {
+            normal : {
+              label: {
+                show: true,
+                position: 'top',
+                textStyle: {
+                  color: '#999'
+                }
+              }
+            },
             color: function(params) {
 // build a color map as your need.
               var colorList = ['#eeeeee', '#3397c9','#f39646','#e02222'];
@@ -207,9 +216,7 @@
             this.sele[this.devOption[1]] = true
           }
         }
-        for(let a = 0;a<this.devOption.length;a++){
 
-        }
         this._ajax()
       },
       _ajax(){
@@ -220,7 +227,7 @@
           async:true,
           data:{a:this.value_y},
           success:function (json) {
-            var data = JSON.parse(json)
+            let data = JSON.parse(json)
             //console.log(data.data.data.x)
 
             let chart_wind = document.getElementById('aaa')
@@ -391,7 +398,8 @@
                 //selectedMode:'multiple',
                 data:[{
                   name:'风力计1',
-                  icon:'rect'
+                  itemWidth:10,
+                  itemHeight:10,
                 },
                   {
                     name:'风力计2',
@@ -406,6 +414,7 @@
               },
               xAxis : [
                 {
+
                   type : 'category',
                   //type:'value',
                   //boundaryGap : false,
@@ -443,7 +452,8 @@
                       }
                       else if (params.data > 30) {
                         return colorList[3];
-                      }}
+                      }
+                    }
                     /*normal: {
                       color: "#70BB3D",
                       lineStyle: {
@@ -487,16 +497,20 @@
                         color: "#aaaaaa"
                       }
                     },*/
-                  normal: {areaStyle: {type: 'default',
-                    color: new vm.$echarts.graphic.LinearGradient(
-                      0, 0, 0, 1,
+                  normal:
+                    {areaStyle:
+                        {type: 'default',
+                        color: new vm.$echarts.graphic.LinearGradient(
+                          0, 0, 0, 1,
                       [
                         {offset: 0, color: 'red'},
                         {offset: 0.5, color: 'pink'},
                         {offset: 1, color: 'rgba(200,200,200,.3)'}
                       ]
                     )
-                        }}}
+                        }
+                    }
+                  }
                     /*lineStyle:{
                       color: new vm.$echarts.graphic.LinearGradient(
                         0, 0, 0, 1,
