@@ -12,38 +12,22 @@
         <div class="left">
           <div class="left_top">
             <div></div>
-            <ul>
+            <ul style="margin-right:14px">
               <li>
-                <ul>
-                  <li>
-                    <p class="lcdfont">18</p>
-                    <p class="shuju">数据告警</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">10</p>
-                    <p class="shuju"><span>数据预警</span></p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">00</p>
-                    <p class="shuju"><span>设备异常</span></p>
-                  </li>
-                </ul>
-                <p>青岛</p>
+                <p class="shuju">数据告警</p>
+                <p class="shuju">数据预警</p>
+                <p class="shuju">设备异常</p>
               </li>
-
               <li>
                 <ul>
                   <li>
                     <p class="lcdfont">18</p>
-                    <p class="shuju">数据告警</p>
                   </li>
                   <li>
                     <p class="lcdfont">10</p>
-                    <p class="shuju"><span>数据预警</span></p>
                   </li>
                   <li>
                     <p class="lcdfont">00</p>
-                    <p class="shuju"><span>设备异常</span></p>
                   </li>
                 </ul>
                 <p>青岛</p>
@@ -52,15 +36,12 @@
                 <ul>
                   <li>
                     <p class="lcdfont">18</p>
-                    <p class="shuju">数据告警</p>
                   </li>
                   <li>
                     <p class="lcdfont">10</p>
-                    <p class="shuju"><span>数据预警</span></p>
                   </li>
                   <li>
                     <p class="lcdfont">00</p>
-                    <p class="shuju"><span>设备异常</span></p>
                   </li>
                 </ul>
                 <p>青岛</p>
@@ -69,15 +50,12 @@
                 <ul>
                   <li>
                     <p class="lcdfont">18</p>
-                    <p class="shuju">数据告警</p>
                   </li>
                   <li>
                     <p class="lcdfont">10</p>
-                    <p class="shuju"><span>数据预警</span></p>
                   </li>
                   <li>
                     <p class="lcdfont">00</p>
-                    <p class="shuju"><span>设备异常</span></p>
                   </li>
                 </ul>
                 <p>青岛</p>
@@ -86,71 +64,96 @@
                 <ul>
                   <li>
                     <p class="lcdfont">18</p>
-                    <p class="shuju">数据告警</p>
                   </li>
                   <li>
                     <p class="lcdfont">10</p>
-                    <p class="shuju"><span>数据预警</span></p>
                   </li>
                   <li>
                     <p class="lcdfont">00</p>
-                    <p class="shuju"><span>设备异常</span></p>
-                  </li>
-                </ul>
-                <p>青岛</p>
-              </li>
-              <li>
-                <ul>
-                  <li>
-                    <p class="lcdfont">18</p>
-                    <p class="shuju">数据告警</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">10</p>
-                    <p class="shuju"><span>数据预警</span></p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">00</p>
-                    <p class="shuju"><span>设备异常</span></p>
-                  </li>
-                </ul>
-                <p>青岛</p>
-              </li>
-              <li>
-                <ul>
-                  <li>
-                    <p class="lcdfont">18</p>
-                    <p class="shuju">数据告警</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">10</p>
-                    <p class="shuju"><span>数据预警</span></p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">00</p>
-                    <p class="shuju"><span>设备异常</span></p>
-                  </li>
-                </ul>
-                <p>青岛</p>
-              </li>
-              <li>
-                <ul>
-                  <li>
-                    <p class="lcdfont">18</p>
-                    <p class="shuju">数据告警</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">10</p>
-                    <p class="shuju"><span>数据预警</span></p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">00</p>
-                    <p class="shuju"><span>设备异常</span></p>
                   </li>
                 </ul>
                 <p>青岛</p>
               </li>
             </ul>
+            <ul>
+              <li>
+                <p class="shuju">数据告警</p>
+                <p class="shuju">数据预警</p>
+                <p class="shuju">设备异常</p>
+              </li>
+              <li>
+                <ul>
+                  <li>
+                    <p class="lcdfont">18</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">10</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">00</p>
+                  </li>
+                </ul>
+                <p>青岛</p>
+              </li>
+              <li>
+                <ul>
+                  <li>
+                    <p class="lcdfont">18</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">10</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">00</p>
+                  </li>
+                </ul>
+                <p>青岛</p>
+              </li>
+              <li>
+                <ul>
+                  <li>
+                    <p class="lcdfont">18</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">10</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">00</p>
+                  </li>
+                </ul>
+                <p>青岛</p>
+              </li>
+              <li>
+                <ul>
+                  <li>
+                    <p class="lcdfont">18</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">10</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">00</p>
+                  </li>
+                </ul>
+                <p>青岛</p>
+              </li>
+
+
+
+            </ul>
+          </div>
+          <div class="left_center">
+            <p>摄像监控</p>
+            <div class="jiankong">
+              <div>
+                <p>2018-07-19 周四 16:36:00 青岛站</p>
+                <img src="../../static/homeImage/image1.png" alt="">
+              </div>
+              <div>
+                <p>2018-07-19 周四 16:36:00 济南站</p>
+                <img src="../../static/homeImage/image2.png" alt="">
+              </div>
+            </div>
           </div>
           <div class="left_bottom">
             <p>各站监测状态</p>
@@ -161,7 +164,11 @@
           </div>
         </div>
         <div class="center">
-          <div class="center_top"></div>
+          <div class="center_top">
+            <div class="tuli">
+              <div></div><p>主要铁路线路</p>
+            </div>
+          </div>
           <div class="center_bottom">
             <table border="0" style="margin: 0 auto">
               <tr>
@@ -178,37 +185,37 @@
               </tr>
               <tr>
                 <td >
-                  <div class="city jinan">济南站</div>
+                  <div class="city qingdao">青岛站</div>
+                </td>
+                <td class="city_gao">S1设备告警，超出预警值，XXXXXX请加强关注</td>
+                <td class="city_time">2018-7-11</td>
+              </tr>
+              <tr>
+                <td >
+                  <div class="city yantai">烟台站</div>
                 </td>
                 <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
                 <td class="city_time">2018-7-11</td>
               </tr>
               <tr>
                 <td >
-                  <div class="city jinan">济南站</div>
+                  <div class="city linyi">临沂站</div>
                 </td>
                 <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
                 <td class="city_time">2018-7-11</td>
               </tr>
               <tr>
                 <td >
-                  <div class="city jinan">济南站</div>
+                  <div class="city heze">菏泽站</div>
                 </td>
-                <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
+                <td class="city_gao">S1设备告警，超出预警值100pa，请加强关注</td>
                 <td class="city_time">2018-7-11</td>
               </tr>
               <tr>
                 <td >
-                  <div class="city jinan">济南站</div>
+                  <div class="city taian">泰安站</div>
                 </td>
-                <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
-                <td class="city_time">2018-7-11</td>
-              </tr>
-              <tr>
-                <td >
-                  <div class="city jinan">济南站</div>
-                </td>
-                <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
+                <td class="city_gao">Y1雨量计超出预警值0.2mm，请关注</td>
                 <td class="city_time">2018-7-11</td>
               </tr>
               <tr>
@@ -331,15 +338,18 @@
       isIE()
      //背景高度满屏
      var bodyH = document.body.offsetHeight
-     var bigH = $(".content_big").outerHeight()
-      console.log(bodyH,bigH)
+     //var bgH = $(".bg").outerHeight()
+     //var bigH = $(".content_big").outerHeight()
+      var bgH = document.querySelector('.bg').offsetHeight
+      var bigH = document.querySelector('.content_big').offsetHeight
+      console.log('body='+bodyH,'c='+bigH,'bg='+bgH)
      if(bodyH>bigH){
-       alert(1)
-       $('.bg').css('height',bodyH)
+       //alert(1)
+       //$('.bg').css('height',bodyH)
 
      }else {
-       alert(0)
-       $('.bg').css('height',768)
+       //alert(0)
+       //$('.bg').css('height',722)
      }
      this._jiance()
      this._bian()
@@ -361,7 +371,7 @@
             top:'10',
             left: '5%',
             right: '12%',
-            bottom: '24%',
+            bottom: '7%',
             containLabel: true
           },
           xAxis: {
@@ -470,11 +480,27 @@
             trigger: "axis",
             formatter:'{b0}: {c0}%'
           },
+          color:['#06beff'],
+          legend: {
+            itemWidth:12,
+            itemHeight:12,
+            x:240,
+            y:-6,
+            textStyle:{//图例文字的样式
+              color:'#fff',
+              fontSize:12
+            },
+            data:[{
+              name:'变形',
+              icon:'rect',
+              color:'red',
+            }],
+          },
           grid: {
             top:'10',
             left: '5%',
             right: '7%',
-            bottom: '28%',
+            bottom: '14%',
             containLabel: true
           },
           xAxis: {
@@ -526,7 +552,7 @@
           },
           series: [
             {
-              name: '',
+              name: '变形',
               type: 'line',
               stack:'健康情况',
               barWidth: 12,
@@ -571,21 +597,21 @@
             top:'10',
             left: '5%',
             right: '7%',
-            bottom: '18%',
+            bottom: '14%',
             containLabel: true
           },
           color:['#ed1e79'],
           legend: {
             itemWidth:12,
             itemHeight:12,
-            x:260,
+            x:240,
             y:-6,
             textStyle:{//图例文字的样式
               color:'#fff',
               fontSize:12
             },
             data:[{
-              name:'变形',
+              name:'应力应变',
               icon:'rect',
               color:'red',
             }],
@@ -639,7 +665,7 @@
           },
           series: [
             {
-              name: '变形',
+              name: '应力应变',
               type: 'line',
               stack:'健康情况',
               symbol:'none',  //去掉点的
@@ -679,8 +705,9 @@
     background-size 100% 100%
     background-repeat no-repeat
     width 100%
+    height 100%
     min-width 1200px
-    border solid 1px #00f
+    min-height 747px
 
     .content_big
       width 1200px
@@ -711,23 +738,21 @@
         justify-content space-between
         .left
           .left_top
-            height 314px
             display flex
             width 288px
+            height 198px
             >div
               width 18px
-              height 270px
+              height 174px
               background-image url('../../static/homeImage/lan.png')
               background-size 100% 100%
             >ul
-              width 270px
-              height 312px
-              display flex
-              flex-wrap wrap
+              width 128px
+              margin-top -16px
               >li
                 width 128px
-                height 58px
-                margin-top  20px
+                height 44px
+                margin-top 6px
                 background-image url("../../static/homeImage/shuju.png")
                 background-size 100% 100%
                 >ul
@@ -739,28 +764,65 @@
                       font-family lcdfont2
                       font-size 26px
                       color #ff0000
-                      margin-top 4px
-                    >.shuju
-                      white-space:nowrap
-                      font-size 12px
-                      transform: scale(0.7)
-                      margin-top -8px
-                      color #f2f2f2
+                      margin-top 1px
                 >p
                   text-align center
                   color #f9f9f9
-                  font-size 16px
+                  font-size 13px
+                  margin-top -2px
+              >:nth-child(1)
+                width 128px
+                height 20px
+                background rgba(42,58,116,.7)
+                display flex
+                margin-bottom -4px
+                >.shuju
+                  white-space:nowrap
+                  font-size 12px
+                  transform: scale(0.76) translate(4px,0px)
+                  color #f2f2f2
+                  margin-left -6px
                   margin-top 2px
-              >li:nth-of-type(odd)
-                margin-right 14px
-
-
+          .left_center
+            width 270px
+            height 170px
+            background url("../../static/homeImage/jiankong.png")
+            background-size 100% 100%
+            margin 20px 0 0 18px
+            >p
+              font-size 18px
+              padding 10px 10px
+              float left
+              color #fff
+              background url("../../static/homeImage/titlebg.png")
+              background-position center
+              background-size 130% 150%
+            >.jiankong
+              width 246px
+              height 122px
+              margin 0 auto
+              display flex
+              justify-content space-around
+              transform translate(0,-4px)
+              >div
+                width 49%
+                height 100%
+                position relative
+                p
+                  position absolute
+                  background rgba(10,10,10,.7)
+                  color #fff
+                  font-size 12px
+                img
+                  width 100%
+                  height 100%
           .left_bottom
             width 270px
             height 244px
-            margin 60px 0 0 18px
+            margin 12px 0 0 18px
             background-image url("../../static/homeImage/kuang1.png")
             background-size 100% 100%
+
             >p
               font-size 18px
               padding 10px 10px
@@ -770,26 +832,40 @@
               background-position center
               background-size 130% 150%
             >#city_jiance
-              height 244px
+              height 204px
             >ul
               width 30px
               color #fff
-              transform translate(240px, -189px)
+              transform translate(240px, -149px)
               >li
-                height 22px
+                height 22.5px
         .center
           width 580px
           .center_top
+            position relative
             width 580px
             height 388px
             margin-left 10px
             background-image url("../../static/homeImage/shandong.png")
             background-size 100% 100%
+            .tuli
+              position absolute
+              bottom 38px
+              right 58px
+              display flex
+              align-items center
+              div
+                width 20px
+                height 2px
+                background #cf7a00
+              p
+                font-size 12px
+                color #fff
           .center_bottom
             width 580px
             height 244px
             th
-              font-size 18px
+              font-size 17px
               color #fff
             .city
               width 100px
@@ -801,11 +877,22 @@
               font-size 14px
             .jinan
               background-image url("../../static/homeImage/zhansuo1.png")
+            .qingdao
+              background-image url("../../static/homeImage/zhansuo2.png")
+            .yantai
+              background-image url("../../static/homeImage/button3.png")
+            .linyi
+              background-image url("../../static/homeImage/zhansuo4.png")
+            .heze
+              background-image url("../../static/homeImage/button5.png")
+            .taian
+              background-image url("../../static/homeImage/zhansuo8.png")
             .city_gao
-              height 30px
-              padding 0 28px
+              height 32px
+              padding 0 10px 0 20px
+              text-align left
               color #e6e6e6
-              font-size 15px
+              font-size 13px
             .city_time
               color #e6e6e6
             a
@@ -828,7 +915,6 @@
               background url("../../static/homeImage/titlebg.png")
               background-position center
               background-size 130% 150%
-
             table
               position absolute
               width 289px
@@ -876,8 +962,8 @@
               height 2px
           .right_center,.right_bottom
             width 326px
-            height 170px
-            margin 12px auto
+            height 176px
+            margin 20px auto
             background-image url("../../static/homeImage/kuang4.png")
             background-size 100% 100%
             >p
@@ -890,4 +976,6 @@
               background-size 130% 150%
             #city_bian,#city_ying
               height 140px
+          .right_bottom
+            background-image url("../../static/homeImage/k5.png")
 </style>
