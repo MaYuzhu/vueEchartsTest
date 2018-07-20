@@ -143,7 +143,7 @@
             </ul>
           </div>
           <div class="left_center">
-            <p>摄像监控</p>
+            <p><img src="../../static/homeImage/titlebg.png" alt="">摄像监控</p>
             <div class="jiankong">
               <div>
                 <p>2018-07-19 周四 16:36:00 青岛站</p>
@@ -156,7 +156,7 @@
             </div>
           </div>
           <div class="left_bottom">
-            <p>各站监测状态</p>
+            <p><img src="../../static/homeImage/titlebg.png" alt="">各站监测状态</p>
             <div id="city_jiance"></div>
             <ul>
               <li v-for="(item,index) in cityDataV" :value="index">{{item}}%</li>
@@ -229,7 +229,7 @@
         </div>
         <div class="right">
           <div class="right_top">
-            <p>客站环境</p>
+            <p><img src="../../static/homeImage/titlebg.png" alt="">客站环境</p>
             <table>
               <tr>
                 <th></th>
@@ -305,11 +305,11 @@
             <img class="line" style="top:212px" src="../../static/homeImage/line.png" alt="">
           </div>
           <div class="right_center">
-            <p>变形异常</p>
+            <p><img src="../../static/homeImage/titlebg.png" alt="">变形异常</p>
             <div id="city_bian"></div>
           </div>
           <div class="right_bottom">
-            <p>应力应变异常</p>
+            <p><img src="../../static/homeImage/titlebg.png" alt="">应力应变异常</p>
             <div id="city_ying"></div>
           </div>
         </div>
@@ -675,7 +675,6 @@
               itemStyle: {
                 normal: {
                   lineStyle: {
-                    width:3,
                     color: '#ed1e79',
                   },
                 },
@@ -708,12 +707,12 @@
     height 100%
     min-width 1200px
     min-height 747px
-
     .content_big
       width 1200px
       margin 0 auto
       padding-right 10px
       box-sizing border-box
+      overflow hidden
       header
         position relative
         img
@@ -790,13 +789,19 @@
             background-size 100% 100%
             margin 20px 0 0 18px
             >p
-              font-size 18px
+              font-size 15px
               padding 10px 10px
               float left
               color #fff
-              background url("../../static/homeImage/titlebg.png")
-              background-position center
-              background-size 130% 150%
+              //background url("../../static/homeImage/titlebg.png")
+              position relative
+              img
+                position absolute
+                top -4px
+                left -12px
+                width 130%
+                height 120%
+                opacity 0.6
             >.jiankong
               width 246px
               height 122px
@@ -824,13 +829,18 @@
             background-size 100% 100%
 
             >p
-              font-size 18px
+              font-size 15px
               padding 10px 10px
               float left
               color #fff
-              background url("../../static/homeImage/titlebg.png")
-              background-position center
-              background-size 130% 150%
+              position relative
+              img
+                position absolute
+                top -4px
+                left -12px
+                width 130%
+                height 120%
+                opacity 0.6
             >#city_jiance
               height 204px
             >ul
@@ -865,7 +875,7 @@
             width 580px
             height 244px
             th
-              font-size 17px
+              font-size 15px
               color #fff
             .city
               width 100px
@@ -908,13 +918,18 @@
             background-image url("../../static/homeImage/kuang3.png")
             background-size 100% 100%
             >p
-              font-size 18px
+              font-size 15px
               padding 10px 10px
               float left
               color #fff
-              background url("../../static/homeImage/titlebg.png")
-              background-position center
-              background-size 130% 150%
+              position relative
+              img
+                position absolute
+                top -4px
+                left -12px
+                width 130%
+                height 120%
+                opacity 0.6
             table
               position absolute
               width 289px
@@ -925,20 +940,20 @@
                 font-size 14px
                 color #fff
               .red_qiu
-                width 10px
-                height 10px
+                width 6px
+                height 6px
                 background linear-gradient(to right, rgb(238,45,36),rgb(241,90,36),rgb(241,90,36))
                 border-radius 50%
                 box-shadow 0 0 10px 1px rgba(238,45,36,.9)
               .yellow_qiu
-                width 10px
-                height 10px
+                width 6px
+                height 6px
                 background linear-gradient(to right, rgb(247,154,30),rgb(252,238,30),rgb(252,238,30))
                 border-radius 50%
                 box-shadow 0 0 10px 1px rgba(247,154,30,.9)
               .green_qiu
-                width 10px
-                height 10px
+                width 6px
+                height 6px
                 background linear-gradient(to right, rgb(8,115,58),rgb(57,181,74),rgb(57,181,74))
                 border-radius 50%
                 box-shadow 0 0 10px 1px rgba(8,115,58,.9)
@@ -967,13 +982,18 @@
             background-image url("../../static/homeImage/kuang4.png")
             background-size 100% 100%
             >p
-              font-size 18px
+              font-size 15px
               padding 10px 10px
               float left
               color #fff
-              background url("../../static/homeImage/titlebg.png")
-              background-position center
-              background-size 130% 150%
+              position relative
+              img
+                position absolute
+                top -4px
+                left -12px
+                width 130%
+                height 120%
+                opacity 0.6
             #city_bian,#city_ying
               height 140px
           .right_bottom

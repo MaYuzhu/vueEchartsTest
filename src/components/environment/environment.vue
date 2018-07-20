@@ -52,6 +52,7 @@
                 @_option="getOption"></devOption>
     <div id="aaa" style="width:500px;height:400px;"></div>
     <div id="bbb" style="width:500px;height:400px;"></div>
+    <a href="OpenExe://hello" style="display: block;background:lightblue;font-size:26px;">点击打开QQ</a>
     <span style="font-size:18px;font-weight:bold;font-family:lcdfont">{{username}}</span>
     <p v-for="(item, index) in testNum" style="font-size:30px"
        :class="colorClasses[item>10&&item<20?0:item>20&&item<30?1:2]">{{item}}</p>
@@ -63,6 +64,7 @@
       <div class="xiaoqiu"></div>
       <div class="jianbianbg"></div>
       <div class="title_p">渐变标题背景</div>
+
     </div>
     <div style="font-size:20px;margin:5px;background:lightgrey" v-for="(item,index) in text0">{{item.text}}</div>
   </div>
