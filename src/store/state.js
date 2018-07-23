@@ -1,3 +1,4 @@
 export default {
-  homeData:[]
+  allCount:[],
+  allEnv:[]
 }

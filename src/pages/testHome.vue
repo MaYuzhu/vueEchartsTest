@@ -10,6 +10,7 @@
       </header>
       <div class="content_wrap">
         <div class="left">
+          <!--<div>{{newCount[0]}}</div>-->
           <div class="left_top">
             <div></div>
             <ul style="margin-right:14px">
@@ -18,7 +19,24 @@
                 <p class="shuju">数据预警</p>
                 <p class="shuju">设备异常</p>
               </li>
-              <li>
+              <li v-for="(item,index) in newCount[0]" :key="index">
+                <ul>
+                  <li>
+                    <p class="lcdfont">{{item.count.data_warning_num>=0&&item.count.data_warning_num<10
+                      ?'0'+item.count.data_warning_num:item.count.data_warning_num}}</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont_y">{{item.count.device_exception_num>=0&&item.count.device_exception_num<10
+                      ?'0'+item.count.device_exception_num:item.count.device_exception_num}}</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont_y">{{item.count.data_early_warning_num>=0&&item.count.data_early_warning_num<10
+                      ?'0'+item.count.data_early_warning_num:item.count.data_early_warning_num}}</p>
+                  </li>
+                </ul>
+                <p>{{item.project_name}}</p>
+              </li>
+              <!--<li>
                 <ul>
                   <li>
                     <p class="lcdfont">18</p>
@@ -59,21 +77,7 @@
                   </li>
                 </ul>
                 <p>青岛</p>
-              </li>
-              <li>
-                <ul>
-                  <li>
-                    <p class="lcdfont">18</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">10</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">00</p>
-                  </li>
-                </ul>
-                <p>青岛</p>
-              </li>
+              </li>-->
             </ul>
             <ul>
               <li>
@@ -81,65 +85,23 @@
                 <p class="shuju">数据预警</p>
                 <p class="shuju">设备异常</p>
               </li>
-              <li>
+              <li v-for="(item,index) in newCount[1]" :key="index">
                 <ul>
                   <li>
-                    <p class="lcdfont">18</p>
+                    <p class="lcdfont">{{item.count.data_warning_num>=0&&item.count.data_warning_num<10
+                      ?'0'+item.count.data_warning_num:item.count.data_warning_num}}</p>
                   </li>
                   <li>
-                    <p class="lcdfont">10</p>
+                    <p class="lcdfont_y">{{item.count.device_exception_num>=0&&item.count.device_exception_num<10
+                      ?'0'+item.count.device_exception_num:item.count.device_exception_num}}</p>
                   </li>
                   <li>
-                    <p class="lcdfont">00</p>
+                    <p class="lcdfont_y">{{item.count.data_early_warning_num>=0&&item.count.data_early_warning_num<10
+                      ?'0'+item.count.data_early_warning_num:item.count.data_early_warning_num}}</p>
                   </li>
                 </ul>
-                <p>青岛</p>
+                <p>{{item.project_name}}</p>
               </li>
-              <li>
-                <ul>
-                  <li>
-                    <p class="lcdfont">18</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">10</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">00</p>
-                  </li>
-                </ul>
-                <p>青岛</p>
-              </li>
-              <li>
-                <ul>
-                  <li>
-                    <p class="lcdfont">18</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">10</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">00</p>
-                  </li>
-                </ul>
-                <p>青岛</p>
-              </li>
-              <li>
-                <ul>
-                  <li>
-                    <p class="lcdfont">18</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">10</p>
-                  </li>
-                  <li>
-                    <p class="lcdfont">00</p>
-                  </li>
-                </ul>
-                <p>青岛</p>
-              </li>
-
-
-
             </ul>
           </div>
           <div class="left_center">
@@ -238,15 +200,17 @@
                 <th>湿度</th>
                 <th>雨量</th>
               </tr>
-              <tr>
-                <td class="city"><p>济南</p></td>
-                <td><div class="red_qiu"></div></td>
-                <td><div class="yellow_qiu"></div></td>
+              <tr v-for="(item,index) in allEnv" :key="index">
+                <!--s = s.Substring(0,s.Length - 1)-->
+                <td class="city"><p>{{item.project_name.substring(0,2)}}</p></td>
+                <td v-for="(itemType,index) in item.alarm_info" :key="index">
+                  <div :class="colorClasses[itemType.level-1]"></div>
+                </td>
+                <!--<td><div class="yellow_qiu"></div></td>
                 <td><div class="green_qiu"></div></td>
-                <td><div class="red_qiu"></div></td>
+                <td><div class="red_qiu"></div></td>-->
               </tr>
-              <!--<img src="../../static/homeImage/line.png" alt="">-->
-              <tr>
+              <!--<tr>
                 <td class="city"><p>青岛</p></td>
                 <td><div class="red_qiu"></div></td>
                 <td><div class="yellow_qiu"></div></td>
@@ -294,15 +258,18 @@
                 <td><div class="yellow_qiu"></div></td>
                 <td><div class="green_qiu"></div></td>
                 <td><div class="red_qiu"></div></td>
-              </tr>
+              </tr>-->
             </table>
-            <img class="line" src="../../static/homeImage/line.png" alt="">
-            <img class="line" style="top:102px" src="../../static/homeImage/line.png" alt="">
-            <img class="line" style="top:124px" src="../../static/homeImage/line.png" alt="">
-            <img class="line" style="top:146px" src="../../static/homeImage/line.png" alt="">
-            <img class="line" style="top:168px" src="../../static/homeImage/line.png" alt="">
-            <img class="line" style="top:190px" src="../../static/homeImage/line.png" alt="">
-            <img class="line" style="top:212px" src="../../static/homeImage/line.png" alt="">
+            <div>
+              <img class="line" src="../../static/homeImage/line.png" alt="">
+              <img class="line" style="top:101px" src="../../static/homeImage/line.png" alt="">
+              <img class="line" style="top:123px" src="../../static/homeImage/line.png" alt="">
+              <img class="line" style="top:145px" src="../../static/homeImage/line.png" alt="">
+              <img class="line" style="top:167px" src="../../static/homeImage/line.png" alt="">
+              <img class="line" style="top:189px" src="../../static/homeImage/line.png" alt="">
+              <img class="line" style="top:211px" src="../../static/homeImage/line.png" alt="">
+            </div>
+
           </div>
           <div class="right_center">
             <p><img src="../../static/homeImage/titlebg.png" alt="">变形异常</p>
@@ -320,11 +287,19 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
 	export default {
 	  data(){
 	    return{
 	      cityDataV : [85, 40, 30, 15, 30, 40, 90, 78],
-        cityData : ["潍坊","青岛","烟台","济南","临沂","泰安","菏泽","临清"]
+        cityData : ["潍坊","青岛","烟台","济南","临沂","泰安","菏泽","临清"],
+        colorClasses:['green_qiu','yellow_qiu','red_qiu']
+      }
+    },
+    computed:{
+      ...mapState(['allCount','allEnv']),
+      newCount:function(){
+        return this._sliceArray(this.allCount,4)
       }
     },
 	  mounted(){
@@ -340,17 +315,18 @@
      var bodyH = document.body.offsetHeight
      //var bgH = $(".bg").outerHeight()
      //var bigH = $(".content_big").outerHeight()
-      var bgH = document.querySelector('.bg').offsetHeight
-      var bigH = document.querySelector('.content_big').offsetHeight
-      console.log('body='+bodyH,'c='+bigH,'bg='+bgH)
+     var bgH = document.querySelector('.bg').offsetHeight
+     var bigH = document.querySelector('.content_big').offsetHeight
+      //console.log('body='+bodyH,'c='+bigH,'bg='+bgH)
      if(bodyH>bigH){
        //alert(1)
        //$('.bg').css('height',bodyH)
-
      }else {
        //alert(0)
        //$('.bg').css('height',722)
      }
+     this.$store.dispatch('getAllCount')
+     this.$store.dispatch('getAllEnv')
      this._jiance()
      this._bian()
      this._ying()
@@ -686,6 +662,24 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
       },
+
+        /** 将一个数组分成几个同等长度的数组
+         array[分割的原数组]
+         size[每个子数组的长度]*/
+
+      _sliceArray(array, size) {
+      var result = [];
+      for (var x = 0; x < Math.ceil(array.length / size); x++) {
+        var start = x * size;
+        var end = start + size;
+        result.push(array.slice(start, end));
+      }
+      return result;
+      },
+      //截取字符串
+      _sliceCity(str){
+        return str.Substring(0,str.length-1)
+      }
     }
   }
 </script>
@@ -763,6 +757,11 @@
                       font-family lcdfont2
                       font-size 26px
                       color #ff0000
+                      margin-top 1px
+                    >.lcdfont_y
+                      font-family lcdfont2
+                      font-size 26px
+                      color #fbb03b
                       margin-top 1px
                 >p
                   text-align center
@@ -846,7 +845,7 @@
             >ul
               width 30px
               color #fff
-              transform translate(240px, -149px)
+              transform translate(240px, -153px)
               >li
                 height 22.5px
         .center
@@ -960,18 +959,19 @@
               .city
                 width 80px
                 color #fff
-                font-size 15px
+                font-size 13px
                 padding  0 5px
                 >p
                   width 40px
                   height 22px
+                  line-height 22px
                   text-align left
               td
                 >div
                   margin 0 26px
             .line
               position absolute
-              top 80px
+              top 79px
               left 28px
               width 290px
               height 2px

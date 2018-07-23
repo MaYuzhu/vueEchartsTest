@@ -13,7 +13,6 @@ import 'babel-polyfill'//兼容IE11-？
 
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
-/*import 'bootstrap/dist/css/bootstrap.min.css'*/
 import 'bootstrap/dist/js/bootstrap.min.js'
 
 Vue.config.productionTip = false

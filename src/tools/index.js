@@ -1,6 +1,7 @@
 import ajax from './ajax'
 
-export const reqData = () => ajax('api/getHomeData')
+export const reqAllCount = () => ajax('/alarm/getAllProjectDeviceAlarmCount.shtml')
+export const reqAllEnv = () => ajax('/alarm/getAllProjectEnvDeviceAlarm.shtml')
 
 /*
 export const reqData =
