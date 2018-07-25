@@ -10,7 +10,6 @@
       </header>
       <div class="content_wrap">
         <div class="left">
-          <!--<div>{{newCount[0]}}</div>-->
           <div class="left_top">
             <div></div>
             <ul style="margin-right:14px">
@@ -121,7 +120,7 @@
             <p><img src="../../static/homeImage/titlebg.png" alt="">各站监测状态</p>
             <div id="city_jiance"></div>
             <ul>
-              <li v-for="(item,index) in cityDataV" :value="index">{{item}}%</li>
+              <li v-for="(item,index) in cityV" :value="index">{{item.value}}%</li>
             </ul>
           </div>
         </div>
@@ -291,13 +290,12 @@
 	export default {
 	  data(){
 	    return{
-	      cityDataV : [85, 40, 30, 15, 30, 40, 90, 78],
-        cityData : ["潍坊","青岛","烟台","济南","临沂","泰安","菏泽","临清"],
-        colorClasses:['green_qiu','yellow_qiu','red_qiu']
+        colorClasses:['green_qiu','yellow_qiu','red_qiu'],
+        cityV:[]
       }
     },
     computed:{
-      ...mapState(['allCount','allEnv']),
+      ...mapState(['allCount','allEnv','allEch','allCityC']),
       newCount:function(){
         return this._sliceArray(this.allCount,4)
       }
@@ -312,9 +310,9 @@
       }
       isIE()
      //背景高度满屏
-     var bodyH = document.body.offsetHeight
-     //var bgH = $(".bg").outerHeight()
-     //var bigH = $(".content_big").outerHeight()
+     /*var bodyH = document.body.offsetHeight
+     var $bgH = $(".bg").outerHeight()
+     var $bigHh = $(".content_big").outerHeight()
      var bgH = document.querySelector('.bg').offsetHeight
      var bigH = document.querySelector('.content_big').offsetHeight
       //console.log('body='+bodyH,'c='+bigH,'bg='+bgH)
@@ -324,17 +322,35 @@
      }else {
        //alert(0)
        //$('.bg').css('height',722)
-     }
+     }*/
+
      this.$store.dispatch('getAllCount')
      this.$store.dispatch('getAllEnv')
-     this._jiance()
-     this._bian()
-     this._ying()
+     this.$store.dispatch('getAllCityV',()=>{
+       this.$nextTick(()=>{
+         this._jiance(this.allCityC)
+         this.cityV = this.allCityC.reverse()
+       })
+     })
+     this.$store.dispatch('getAllEch',()=>{
+       this.$nextTick(()=>{
+         document.getElementById('city_bian').innerHTML = '<img src="../../static/homeImage/aaa.gif" alt="">'
+         $('#city_bian img').css({transform:'translate(64px,76px)',opacity:0.6})
+         setTimeout(()=>{this._bian(this.allEch)},5000)
+         this._ying(this.allEch)
+       })
+     })
     },
     methods:{
-	    _jiance(){
+	    _jiance(json){
+	      json = json.reverse()
+        let cityName = []
+        let cityC = []
+        for(let i=0;i<json.length;i++){
+          cityName.push(json[i].project_name.substring(0,2))
+          cityC.push(json[i].value)
+        }
 	      let vm = this
-
         let myChart = vm.$echarts.init(document.getElementById('city_jiance'));
         // 指定图表的配置项和数据
         let option = {
@@ -344,7 +360,7 @@
             formatter:'{b1}: {c1}%'
           },
           grid: {
-            top:'10',
+            top:'1%',
             left: '5%',
             right: '12%',
             bottom: '7%',
@@ -389,7 +405,7 @@
                 color: '#fff'
               }
             },
-            data:this.cityData.reverse(),
+            data:cityName,
             splitLine:{
               show:false,
             },
@@ -405,6 +421,13 @@
               //data: [15, 60, 70, 85, 70, 60, 10, 22],
               itemStyle:{
                 normal:{
+                  label: {
+                    show: false,
+                    position: 'right',
+                    textStyle: {
+                      color: '#fff'
+                    }
+                  },
                   color:"rgba(0,210,233,0.2)",
                 },
               }
@@ -414,7 +437,7 @@
             type: 'bar',
             stack:'健康情况',
             barWidth: 12,
-            data: [85, 40, 30, 15, 30, 40, 90, 78].reverse(),
+            data: cityC,
             itemStyle: {
               normal : {
                 label: {
@@ -447,14 +470,20 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
       },
-      _bian(){
+      _bian(json){
+	      let cityName = []
+        let cityBian = []
+	      for(let i=0;i<json.length;i++){
+          cityName.push(json[i].project_name.substring(0,2))
+          cityBian.push(json[i].value.bian)
+        }
         let vm = this
         let myChart = vm.$echarts.init(document.getElementById('city_bian'));
         let option = {
           //提示框
           tooltip: {
             trigger: "axis",
-            formatter:'{b0}: {c0}%'
+            formatter:'{b0}: {c0}'
           },
           color:['#06beff'],
           legend: {
@@ -473,7 +502,7 @@
             }],
           },
           grid: {
-            top:'10',
+            top:'18%',
             left: '5%',
             right: '7%',
             bottom: '14%',
@@ -482,7 +511,7 @@
           xAxis: {
             type : 'category',
             show:true,
-            data:this.cityData,
+            data:cityName,
             boundaryGap : false,
             axisTick: {
               show: false
@@ -506,6 +535,10 @@
             },
           },
           yAxis: {
+            name:'单位',
+            nameTextStyle:{
+              fontSize:10
+            },
             type : 'value',
             axisTick: {
               show: false
@@ -521,7 +554,6 @@
                 color: '#fff'
               }
             },
-            data:this.cityData,
             splitLine:{
               show:false,
             },
@@ -532,7 +564,7 @@
               type: 'line',
               stack:'健康情况',
               barWidth: 12,
-              data: [85, 40, 30, 15, 30, 40, 90, 78],
+              data: cityBian,
               itemStyle: {
                 normal: {
                   color: '#06beff',
@@ -560,17 +592,23 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
       },
-      _ying(){
+      _ying(json){
+        let cityName = []
+        let cityYing = []
+        for(let i=0;i<json.length;i++){
+          cityName.push(json[i].project_name.substring(0,2))
+          cityYing.push(json[i].value.ying)
+    }
         let vm = this
         let myChart = vm.$echarts.init(document.getElementById('city_ying'));
         let option = {
           //提示框
           tooltip: {
             trigger: "axis",
-            formatter:'{b0}: {c0}%'
+            formatter:'{b0}: {c0}'
           },
           grid: {
-            top:'10',
+            top:'18%',
             left: '5%',
             right: '7%',
             bottom: '14%',
@@ -595,7 +633,7 @@
           xAxis: {
             type : 'category',
             show:true,
-            data:this.cityData,
+            data:cityName,
             boundaryGap : true,//和y轴有距离
             axisTick: {
               show: false
@@ -619,6 +657,10 @@
             },
           },
           yAxis: {
+            name:'单位',
+            nameTextStyle:{
+              fontSize:10
+            },
             type : 'value',
             axisTick: {
               show: false
@@ -647,7 +689,7 @@
               symbol:'none',  //去掉点的
               smooth:true,  //让曲线变平滑
               barWidth: 12,
-              data: [85, 40, 30, 15, 30, 40, 90, 78],
+              data: cityYing,
               itemStyle: {
                 normal: {
                   lineStyle: {
@@ -845,9 +887,9 @@
             >ul
               width 30px
               color #fff
-              transform translate(240px, -153px)
+              transform translate(240px, -158px)
               >li
-                height 22.5px
+                height 23.2px
         .center
           width 580px
           .center_top

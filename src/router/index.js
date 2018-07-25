@@ -19,14 +19,14 @@ export default new Router({
 
   routes: [
     {
-      path:'/test',
+      path:'/',
       component:testHome,
       meta:{
         showHeader:false
       }
     },
     {
-      path:'/',
+      path:'/login',
       component:login,
       meta:{
         showHeader:false

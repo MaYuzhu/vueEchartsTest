@@ -16,3 +16,5 @@ Mock.mock('/wind?a=2', {code: 1, data: wind.data_mon})
 
 Mock.mock('/alarm/getAllProjectDeviceAlarmCount.shtml', home.AllCount)
 Mock.mock('/alarm/getAllProjectEnvDeviceAlarm.shtml', home.AllEnv)
+Mock.mock('/alarm/getAllEchart', home.AllEcharts)
+Mock.mock('/alarm/getAllCity', home.AllCityV)

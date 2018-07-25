@@ -1,4 +1,6 @@
 export default {
   allCount:[],
-  allEnv:[]
+  allEnv:[],
+  allEch:[],
+  allCityC:[]
 }

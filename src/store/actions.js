@@ -1,4 +1,7 @@
-import {reqAllCount,reqAllEnv} from '../tools/index'
+import {reqAllCount,
+        reqAllEnv,
+        reqAllEchart,
+        reqAllCityV} from '../tools/index'
 
 
 export default {
@@ -11,5 +14,15 @@ export default {
     const result = await reqAllEnv()
     commit('receiveEnv',{allEnv:result})
     cb && cb()
-  }
+  },
+  async getAllEch ({commit},cb){
+    const result = await reqAllEchart()
+    commit('receiveEch',{allEch:result})
+    cb && cb()
+  },
+  async getAllCityV ({commit},cb){
+    const result = await reqAllCityV()
+    commit('receiveCit',{allCityC:result})
+    cb && cb()
+  },
 }
