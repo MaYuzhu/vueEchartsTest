@@ -333,7 +333,7 @@
        //$('.bg').css('height',722)
      }*/
 
-       $.ajax({
+      /* $.ajax({
          type: 'get',
          async: true,
          cache: true,
@@ -349,7 +349,7 @@
          error: function () {
            // alert('fail');
          }
-       });
+       });*/
       //this.$store.dispatch('getAllCount')
 
      this.$store.dispatch('getAllEnv')
