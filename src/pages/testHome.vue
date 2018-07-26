@@ -18,6 +18,7 @@
                 <p class="shuju">数据预警</p>
                 <p class="shuju">设备异常</p>
               </li>
+
               <li v-for="(item,index) in newCount[0]" :key="index">
                 <ul>
                   <li>
@@ -291,16 +292,24 @@
 	  data(){
 	    return{
         colorClasses:['green_qiu','yellow_qiu','red_qiu'],
-        cityV:[]
+        cityV:[],
+        //allCount:[]
       }
     },
     computed:{
       ...mapState(['allCount','allEnv','allEch','allCityC']),
       newCount:function(){
         return this._sliceArray(this.allCount,4)
+
       }
     },
+    created(){
+	    //setTimeout(()=>{this.$store.commit('admin')},5000)
+        //获取后台数据需要先登录
+
+    },
 	  mounted(){
+	    let vm = this
       function isIE() { //ie?
         if (!!window.ActiveXObject || "ActiveXObject" in window){
           //alert(1111111)
@@ -323,6 +332,26 @@
        //alert(0)
        //$('.bg').css('height',722)
      }*/
+
+       /*$.ajax({
+         type: 'get',
+         async: true,
+         cache: true,
+         url: 'http://192.168.20.23:50001/zzcismp/alarm/getAllProjectDeviceAlarmCount.shtml',
+         dataType: 'jsonp',
+         jsonp: "callback",
+         success: function (json) {
+           console.log(json);
+           for(let i=0;i<8;i++){
+             vm.allCount.push(json[0])
+           }
+         },
+         error: function () {
+           // alert('fail');
+         }
+       });*/
+
+      console.log(this.allCount)
 
      this.$store.dispatch('getAllCount')
      this.$store.dispatch('getAllEnv')
@@ -676,7 +705,6 @@
                 color: '#fff'
               }
             },
-            data:this.cityData,
             splitLine:{
               show:false,
             },
@@ -718,10 +746,7 @@
       }
       return result;
       },
-      //截取字符串
-      _sliceCity(str){
-        return str.Substring(0,str.length-1)
-      }
+
     }
   }
 </script>

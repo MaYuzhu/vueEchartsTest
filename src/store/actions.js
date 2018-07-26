@@ -5,10 +5,10 @@ import {reqAllCount,
 
 
 export default {
-  async getAllCount ({commit},cb){
+  async getAllCount ({commit}){
     const result = await reqAllCount()
     commit('receiveConut',{allCount:result})
-    cb && cb()
+
   },
   async getAllEnv ({commit},cb){
     const result = await reqAllEnv()

@@ -1,4 +1,9 @@
+import {admin} from '../tools/index'
 export default {
+
+  ['admin'](){
+    admin()
+  },
   ['receiveConut'](state,{allCount}){
     state.allCount = allCount
   },
