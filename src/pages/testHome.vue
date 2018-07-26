@@ -304,7 +304,7 @@
       }
     },
     created(){
-	    //setTimeout(()=>{this.$store.commit('admin')},5000)
+	    this.$store.commit('admin')
         //获取后台数据需要先登录
 
     },
@@ -333,7 +333,7 @@
        //$('.bg').css('height',722)
      }*/
 
-       /*$.ajax({
+       $.ajax({
          type: 'get',
          async: true,
          cache: true,
@@ -349,11 +349,9 @@
          error: function () {
            // alert('fail');
          }
-       });*/
+       });
+      //this.$store.dispatch('getAllCount')
 
-      console.log(this.allCount)
-
-     this.$store.dispatch('getAllCount')
      this.$store.dispatch('getAllEnv')
      this.$store.dispatch('getAllCityV',()=>{
        this.$nextTick(()=>{
