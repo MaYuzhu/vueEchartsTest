@@ -11,31 +11,44 @@
       <div class="content_wrap">
         <div class="left">
           <div class="left_top">
-            <div></div>
-            <ul style="margin-right:14px">
+            <div class="last_left"></div>
+            <ul class="left_top_ul" style="margin-right:14px">
               <li>
                 <p class="shuju">数据告警</p>
                 <p class="shuju">数据预警</p>
                 <p class="shuju">设备异常</p>
               </li>
-
-              <li v-for="(item,index) in newCount[0]" :key="index">
+              <!--<li class="left_top_li">
                 <ul>
                   <li>
-                    <p class="lcdfont">{{item.count.data_warning_num>=0&&item.count.data_warning_num<10
-                      ?'0'+item.count.data_warning_num:item.count.data_warning_num}}</p>
+                    <p id="count0" class="count0 lcdfont"></p>
                   </li>
                   <li>
-                    <p class="lcdfont_y">{{item.count.device_exception_num>=0&&item.count.device_exception_num<10
-                      ?'0'+item.count.device_exception_num:item.count.device_exception_num}}</p>
+                    <p id="count1" class="count1 lcdfont_y"></p>
                   </li>
                   <li>
-                    <p class="lcdfont_y">{{item.count.data_early_warning_num>=0&&item.count.data_early_warning_num<10
-                      ?'0'+item.count.data_early_warning_num:item.count.data_early_warning_num}}</p>
+                    <p id="count2" class="count2 lcdfont_y"></p>
+                  </li>
+                </ul>
+                <p id="left_top_city" class="left_top_city"></p>
+              </li>-->
+              <!--<li v-for="(item,index) in allCount" :key="index">
+                <ul>
+                  <li>
+                    <p class="lcdfont">{{item.data_warning_num>=0&&item.data_warning_num<10
+                      ?'0'+item.data_warning_num:item.data_warning_num}}</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont_y">{{item.count.device_exception_num>=0&&item.device_exception_num<10
+                      ?'0'+item.device_exception_num:item.device_exception_num}}</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont_y">{{item.data_early_warning_num>=0&&item.data_early_warning_num<10
+                      ?'0'+item.data_early_warning_num:item.data_early_warning_num}}</p>
                   </li>
                 </ul>
                 <p>{{item.project_name}}</p>
-              </li>
+              </li>-->
               <!--<li>
                 <ul>
                   <li>
@@ -79,7 +92,87 @@
                 <p>青岛</p>
               </li>-->
             </ul>
-            <ul>
+            <ul class="left_top_ul2">
+              <li>
+                <p class="shuju">数据告警</p>
+                <p class="shuju">数据预警</p>
+                <p class="shuju">设备异常</p>
+              </li>
+              <!--<li class="left_top_li">
+                <ul>
+                  <li>
+                    <p id="count0" class="count0 lcdfont"></p>
+                  </li>
+                  <li>
+                    <p id="count1" class="count1 lcdfont_y"></p>
+                  </li>
+                  <li>
+                    <p id="count2" class="count2 lcdfont_y"></p>
+                  </li>
+                </ul>
+                <p id="left_top_city" class="left_top_city"></p>
+              </li>-->
+              <!--<li v-for="(item,index) in allCount" :key="index">
+                <ul>
+                  <li>
+                    <p class="lcdfont">{{item.data_warning_num>=0&&item.data_warning_num<10
+                      ?'0'+item.data_warning_num:item.data_warning_num}}</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont_y">{{item.count.device_exception_num>=0&&item.device_exception_num<10
+                      ?'0'+item.device_exception_num:item.device_exception_num}}</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont_y">{{item.data_early_warning_num>=0&&item.data_early_warning_num<10
+                      ?'0'+item.data_early_warning_num:item.data_early_warning_num}}</p>
+                  </li>
+                </ul>
+                <p>{{item.project_name}}</p>
+              </li>-->
+              <!--<li>
+                <ul>
+                  <li>
+                    <p class="lcdfont">18</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">10</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">00</p>
+                  </li>
+                </ul>
+                <p>青岛</p>
+              </li>
+              <li>
+                <ul>
+                  <li>
+                    <p class="lcdfont">18</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">10</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">00</p>
+                  </li>
+                </ul>
+                <p>青岛</p>
+              </li>
+              <li>
+                <ul>
+                  <li>
+                    <p class="lcdfont">18</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">10</p>
+                  </li>
+                  <li>
+                    <p class="lcdfont">00</p>
+                  </li>
+                </ul>
+                <p>青岛</p>
+              </li>-->
+            </ul>
+            <!--<ul>
               <li>
                 <p class="shuju">数据告警</p>
                 <p class="shuju">数据预警</p>
@@ -102,7 +195,7 @@
                 </ul>
                 <p>{{item.project_name}}</p>
               </li>
-            </ul>
+            </ul>-->
           </div>
           <div class="left_center">
             <p><img src="../../static/homeImage/titlebg.png" alt="">摄像监控</p>
@@ -145,7 +238,7 @@
                 <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
                 <td class="city_time">2018-7-11</td>
               </tr>
-              <tr>
+              <tr class="qing">
                 <td >
                   <div class="city qingdao">青岛站</div>
                 </td>
@@ -200,11 +293,11 @@
                 <th>湿度</th>
                 <th>雨量</th>
               </tr>
-              <tr v-for="(item,index) in allEnv" :key="index">
+              <tr v-for="(item,index) in Env" :key="index">
                 <!--s = s.Substring(0,s.Length - 1)-->
                 <td class="city"><p>{{item.project_name.substring(0,2)}}</p></td>
-                <td v-for="(itemType,index) in item.alarm_info" :key="index">
-                  <div :class="colorClasses[itemType.level-1]"></div>
+                <td v-for="(itemType,index) in item.alarm_info.slice(2,4)" :key="index">
+                  <div :class="colorClasses[itemType.level]"></div>
                 </td>
                 <!--<td><div class="yellow_qiu"></div></td>
                 <td><div class="green_qiu"></div></td>
@@ -293,20 +386,32 @@
 	    return{
         colorClasses:['green_qiu','yellow_qiu','red_qiu'],
         cityV:[],
-        //allCount:[]
+        Env:[]
       }
     },
     computed:{
       ...mapState(['allCount','allEnv','allEch','allCityC']),
-      newCount:function(){
-        return this._sliceArray(this.allCount,4)
+      /*newCount:function(){
 
-      }
+        console.log(this.allCount)
+        for(let i=0;i<7;i++){
+          this.allCount.push(this.allCount[0])
+        }
+        return this._sliceArray(this.allCount,4)
+      }*/
     },
     created(){
-	    this.$store.commit('admin')
+      $.ajax({
+        type: 'get',
+        async: true,
+        cache: true,//36.110.66.214:50001
+        url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
+        dataType: 'jsonp',
+        jsonp: "callback",
+        success: function () {},
+        error: function () {}
         //获取后台数据需要先登录
-
+      })
     },
 	  mounted(){
 	    let vm = this
@@ -332,8 +437,8 @@
        //alert(0)
        //$('.bg').css('height',722)
      }*/
-
-      /* $.ajax({
+      //左上角各站预警数据等
+      $.ajax({
          type: 'get',
          async: true,
          cache: true,
@@ -341,18 +446,106 @@
          dataType: 'jsonp',
          jsonp: "callback",
          success: function (json) {
-           console.log(json);
+           //console.log(json[0].data_warning_num);
+           let array_left_top = []
            for(let i=0;i<8;i++){
-             vm.allCount.push(json[0])
+             array_left_top.push(json[0])
+           }
+           let newCount = vm._sliceArray(array_left_top,4)
+           for(let i=0;i<newCount[0].length;i++){
+             $('.left_top_ul').append('<li class="left_top_li">\n' +
+               '                <ul>\n' +
+               '                  <li>\n' +
+               '                    <p  class="count0 lcdfont"></p>\n' +
+               '                  </li>\n' +
+               '                  <li>\n' +
+               '                    <p  class="count1 lcdfont_y"></p>\n' +
+               '                  </li>\n' +
+               '                  <li>\n' +
+               '                    <p  class="count2 lcdfont_y"></p>\n' +
+               '                  </li>\n' +
+               '                </ul>\n' +
+               '                <p  class="left_top_city"></p>\n' +
+               '              </li>')
+
+             $('.left_top_ul .left_top_li .count0')[i].innerHTML = array_left_top[i].data_warning_num>=0&&array_left_top[i].data_warning_num<10
+               ?'0'+array_left_top[i].data_warning_num:array_left_top[i].data_warning_num
+             $('.left_top_ul .left_top_li .count1')[i].innerHTML = array_left_top[i].data_early_warning_num>=0&&array_left_top[i].data_early_warning_num<10
+               ?'0'+array_left_top[i].data_early_warning_num:array_left_top[i].data_early_warning_num
+             $('.left_top_ul .left_top_li .count2')[i].innerHTML = array_left_top[i].device_exception_num>=0&&array_left_top[i].device_exception_num<10
+               ?'0'+array_left_top[i].device_exception_num:array_left_top[i].device_exception_num
+
+             $('.left_top_ul .left_top_li .left_top_city')[i].innerHTML = array_left_top[i].project_name
+
+           }
+           for(let i=0;i<newCount[1].length;i++){
+             $('.left_top_ul2').append('<li class="left_top_li">\n' +
+               '                <ul>\n' +
+               '                  <li>\n' +
+               '                    <p  class="count0 lcdfont"></p>\n' +
+               '                  </li>\n' +
+               '                  <li>\n' +
+               '                    <p  class="count1 lcdfont_y"></p>\n' +
+               '                  </li>\n' +
+               '                  <li>\n' +
+               '                    <p  class="count2 lcdfont_y"></p>\n' +
+               '                  </li>\n' +
+               '                </ul>\n' +
+               '                <p  class="left_top_city"></p>\n' +
+               '              </li>')
+
+             $('.left_top_ul2 .left_top_li .count0')[i].innerHTML = array_left_top[i].data_warning_num>=0&&array_left_top[i].data_warning_num<10
+               ?'0'+array_left_top[i].data_warning_num:array_left_top[i].data_warning_num
+             $('.left_top_ul2 .left_top_li .count1')[i].innerHTML = array_left_top[i].data_early_warning_num>=0&&array_left_top[i].data_early_warning_num<10
+               ?'0'+array_left_top[i].data_early_warning_num:array_left_top[i].data_early_warning_num
+             $('.left_top_ul2 .left_top_li .count2')[i].innerHTML = array_left_top[i].device_exception_num>=0&&array_left_top[i].device_exception_num<10
+               ?'0'+array_left_top[i].device_exception_num:array_left_top[i].device_exception_num
+
+             $('.left_top_ul2 .left_top_li .left_top_city')[i].innerHTML = array_left_top[i].project_name
+
            }
          },
          error: function () {
            // alert('fail');
          }
-       });*/
+       })
       //this.$store.dispatch('getAllCount')
+      //右上风力温度等
+      $.ajax({
+        type: 'get',
+        async: true,
+        cache: true,
+        url: 'http://192.168.20.23:50001/zzcismp/alarm/getAllProjectEnvDeviceAlarm.shtml',
+        data: '',
+        dataType: 'jsonp',
+        jsonp: "callback",
+        success: function (json) {
+          vm.Env = json
+        },
+        error: function () {
 
-     this.$store.dispatch('getAllEnv')
+        }
+      })
+     //this.$store.dispatch('getAllEnv')
+      //中下提示信息
+      $.ajax({
+        type: 'get',
+        async: true,
+        cache: true,
+        url: 'http://192.168.20.23:50001/zzcismp/alarm/getAllProjectDeviceAlarmDetail.shtml',
+        data: '',
+        dataType: 'jsonp',
+        jsonp: "callback",
+        success: function (json) {
+          let a = json.filter((item)=>{return item.projname == "青岛北站"})
+          $('.qing .city_gao').text(a[0].alarm_reason)
+          $('.qing .city_time').text(a[0].alarm_time.substring(0,10))
+        },
+        error: function () {
+
+        }
+      })
+
      this.$store.dispatch('getAllCityV',()=>{
        this.$nextTick(()=>{
          this._jiance(this.allCityC)
@@ -749,7 +942,7 @@
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   @font-face{
     font-family: 'lcdfont2';
     src: url('../../static/css/lcdfont2/ds-digit-webfont.woff'); /* IE9 Compat Modes */
@@ -799,7 +992,7 @@
             display flex
             width 288px
             height 198px
-            >div
+            >.last_left
               width 18px
               height 174px
               background-image url('../../static/homeImage/lan.png')
@@ -831,7 +1024,7 @@
                 >p
                   text-align center
                   color #f9f9f9
-                  font-size 13px
+                  font-size 12px
                   margin-top -2px
               >:nth-child(1)
                 width 128px
@@ -962,11 +1155,12 @@
             .taian
               background-image url("../../static/homeImage/zhansuo8.png")
             .city_gao
+              width 360px
               height 32px
               padding 0 10px 0 20px
               text-align left
               color #e6e6e6
-              font-size 13px
+              font-size 12px
             .city_time
               color #e6e6e6
             a

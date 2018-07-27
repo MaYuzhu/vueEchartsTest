@@ -6,6 +6,7 @@ export default {
   },
   ['receiveConut'](state,{allCount}){
     state.allCount = allCount
+    //console.log(state.allCount)
   },
   ['receiveEnv'](state,{allEnv}){
     state.allEnv = allEnv
