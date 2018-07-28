@@ -405,7 +405,8 @@
         type: 'get',
         async: true,
         cache: true,//36.110.66.214:50001
-        url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
+        //url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
+        url: 'http://36.110.66.214:50001/zzcismp/user/login.shtml?username=admin&password=123456',
         dataType: 'jsonp',
         jsonp: "callback",
         success: function () {},
@@ -415,6 +416,8 @@
     },
 	  mounted(){
 	    let vm = this
+      let url = 'http://192.168.20.23:50001'
+      //let url = 'http://36.110.66.214:50001'
       function isIE() { //ie?
         if (!!window.ActiveXObject || "ActiveXObject" in window){
           //alert(1111111)
@@ -442,7 +445,7 @@
          type: 'get',
          async: true,
          cache: true,
-         url: 'http://192.168.20.23:50001/zzcismp/alarm/getAllProjectDeviceAlarmCount.shtml',
+         url: url + '/zzcismp/alarm/getAllProjectDeviceAlarmCount.shtml',
          dataType: 'jsonp',
          jsonp: "callback",
          success: function (json) {
@@ -515,7 +518,7 @@
         type: 'get',
         async: true,
         cache: true,
-        url: 'http://192.168.20.23:50001/zzcismp/alarm/getAllProjectEnvDeviceAlarm.shtml',
+        url: url + '/zzcismp/alarm/getAllProjectEnvDeviceAlarm.shtml',
         data: '',
         dataType: 'jsonp',
         jsonp: "callback",
@@ -532,7 +535,7 @@
         type: 'get',
         async: true,
         cache: true,
-        url: 'http://192.168.20.23:50001/zzcismp/alarm/getAllProjectDeviceAlarmDetail.shtml',
+        url: url + '/zzcismp/alarm/getAllProjectDeviceAlarmDetail.shtml',
         data: '',
         dataType: 'jsonp',
         jsonp: "callback",
