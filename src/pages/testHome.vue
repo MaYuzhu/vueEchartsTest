@@ -236,42 +236,42 @@
                   <div class="city jinan">济南站</div>
                 </td>
                 <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
-                <td class="city_time">2018-7-11</td>
+                <td class="city_time">2018-07-11</td>
               </tr>
               <tr class="qing">
                 <td >
                   <div class="city qingdao">青岛站</div>
                 </td>
                 <td class="city_gao">S1设备告警，超出预警值，XXXXXX请加强关注</td>
-                <td class="city_time">2018-7-11</td>
+                <td class="city_time">2018-07-11</td>
               </tr>
               <tr>
                 <td >
                   <div class="city yantai">烟台站</div>
                 </td>
                 <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
-                <td class="city_time">2018-7-11</td>
+                <td class="city_time">2018-07-11</td>
               </tr>
               <tr>
                 <td >
                   <div class="city linyi">临沂站</div>
                 </td>
                 <td class="city_gao">S1设备告警，超出预警值，请加强关注</td>
-                <td class="city_time">2018-7-11</td>
+                <td class="city_time">2018-07-11</td>
               </tr>
               <tr>
                 <td >
                   <div class="city heze">菏泽站</div>
                 </td>
                 <td class="city_gao">S1设备告警，超出预警值100pa，请加强关注</td>
-                <td class="city_time">2018-7-11</td>
+                <td class="city_time">2018-07-11</td>
               </tr>
               <tr>
                 <td >
                   <div class="city taian">泰安站</div>
                 </td>
                 <td class="city_gao">Y1雨量计超出预警值0.2mm，请关注</td>
-                <td class="city_time">2018-7-11</td>
+                <td class="city_time">2018-07-11</td>
               </tr>
               <tr>
                 <td></td>
@@ -296,12 +296,27 @@
               <tr v-for="(item,index) in Env" :key="index">
                 <!--s = s.Substring(0,s.Length - 1)-->
                 <td class="city"><p>{{item.project_name.substring(0,2)}}</p></td>
-                <td v-for="(itemType,index) in item.alarm_info.slice(2,4)" :key="index">
-                  <div :class="colorClasses[itemType.level]"></div>
+                <td>
+                  <div :class="item.alarm_info.filter(a=>a.type=='L')[0]?
+                  colorClasses[(item.alarm_info.filter(a=>a.type=='L')[0].level!==undefined?
+                  item.alarm_info.filter(a=>a.type=='L')[0].level:3)]:colorClasses[3]"></div>
                 </td>
-                <!--<td><div class="yellow_qiu"></div></td>
-                <td><div class="green_qiu"></div></td>
-                <td><div class="red_qiu"></div></td>-->
+                <td>
+                  <div :class="item.alarm_info.filter(a=>a.type=='T')[0]?
+                  colorClasses[(item.alarm_info.filter(a=>a.type=='T')[0].level!==undefined?
+                  item.alarm_info.filter(a=>a.type=='L')[0].level:3)]:colorClasses[3]"></div>
+                </td>
+                <td>
+                  <div :class="item.alarm_info.filter(a=>a.type=='K')[0]?
+                  colorClasses[(item.alarm_info.filter(a=>a.type=='K')[0].level!==undefined?
+                  item.alarm_info.filter(a=>a.type=='L')[0].level:3)]:colorClasses[3]"></div>
+                </td>
+                <td>
+                  <div :class="item.alarm_info.filter(a=>a.type=='F')[0]?
+                  colorClasses[(item.alarm_info.filter(a=>a.type=='F')[0].level!==undefined?
+                  item.alarm_info.filter(a=>a.type=='L')[0].level:3)]:colorClasses[3]"></div>
+                </td>
+
               </tr>
               <!--<tr>
                 <td class="city"><p>青岛</p></td>
@@ -384,7 +399,7 @@
 	export default {
 	  data(){
 	    return{
-        colorClasses:['green_qiu','yellow_qiu','red_qiu'],
+        colorClasses:['green_qiu','yellow_qiu','red_qiu','gray_qiu'],
         cityV:[],
         Env:[]
       }
@@ -405,8 +420,8 @@
         type: 'get',
         async: true,
         cache: true,//36.110.66.214:50001
-        //url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
-        url: 'http://36.110.66.214:50001/zzcismp/user/login.shtml?username=admin&password=123456',
+        url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
+        //url: 'http://36.110.66.214:50001/zzcismp/user/login.shtml?username=admin&password=123456',
         dataType: 'jsonp',
         jsonp: "callback",
         success: function () {},
@@ -418,6 +433,7 @@
 	    let vm = this
       let url = 'http://192.168.20.23:50001'
       //let url = 'http://36.110.66.214:50001'
+      //192.168.1.46本机IP
       function isIE() { //ie?
         if (!!window.ActiveXObject || "ActiveXObject" in window){
           //alert(1111111)
@@ -445,68 +461,171 @@
          type: 'get',
          async: true,
          cache: true,
-         url: url + '/zzcismp/alarm/getAllProjectDeviceAlarmCount.shtml',
+         url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCode.shtml',
          dataType: 'jsonp',
          jsonp: "callback",
          success: function (json) {
            //console.log(json[0].data_warning_num);
-           let array_left_top = []
-           for(let i=0;i<8;i++){
-             array_left_top.push(json[0])
+           if(json.length === 8){
+             let newCount = vm._sliceArray(json,4)
+             for(let i=0;i<newCount[0].length;i++){
+               $('.left_top_ul').append('<li class="left_top_li">\n' +
+                 '                <ul>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count0 lcdfont"></p>\n' +
+                 '                  </li>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count1 lcdfont_y"></p>\n' +
+                 '                  </li>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count2 lcdfont_y"></p>\n' +
+                 '                  </li>\n' +
+                 '                </ul>\n' +
+                 '                <p  class="left_top_city"></p>\n' +
+                 '              </li>')
+
+               $('.left_top_ul .left_top_li .count0')[i].innerHTML = newCount[0][i].data_warning_num>=0&&newCount[0][i].data_warning_num<10
+                 ?'0'+newCount[0][i].data_warning_num:newCount[0][i].data_warning_num
+               $('.left_top_ul .left_top_li .count1')[i].innerHTML = newCount[0][i].data_early_warning_num>=0&&newCount[0][i].data_early_warning_num<10
+                 ?'0'+newCount[0][i].data_early_warning_num:newCount[0][i].data_early_warning_num
+               $('.left_top_ul .left_top_li .count2')[i].innerHTML = newCount[0][i].device_exception_num>=0&&newCount[0][i].device_exception_num<10
+                 ?'0'+newCount[0][i].device_exception_num:newCount[0][i].device_exception_num
+
+               $('.left_top_ul .left_top_li .left_top_city')[i].innerHTML = newCount[0][i].project_name
+
+             }
+             for(let i=0;i<newCount[1].length;i++){
+               $('.left_top_ul2').append('<li class="left_top_li">\n' +
+                 '                <ul>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count0 lcdfont"></p>\n' +
+                 '                  </li>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count1 lcdfont_y"></p>\n' +
+                 '                  </li>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count2 lcdfont_y"></p>\n' +
+                 '                  </li>\n' +
+                 '                </ul>\n' +
+                 '                <p  class="left_top_city"></p>\n' +
+                 '              </li>')
+
+               $('.left_top_ul2 .left_top_li .count0')[i].innerHTML = newCount[1][i].data_warning_num>=0&&newCount[1][i].data_warning_num<10
+                 ?'0'+newCount[1][i].data_warning_num:newCount[1][i].data_warning_num
+               $('.left_top_ul2 .left_top_li .count1')[i].innerHTML = newCount[1][i].data_early_warning_num>=0&&newCount[1][i].data_early_warning_num<10
+                 ?'0'+newCount[1][i].data_early_warning_num:newCount[1][i].data_early_warning_num
+               $('.left_top_ul2 .left_top_li .count2')[i].innerHTML = newCount[1][i].device_exception_num>=0&&newCount[1][i].device_exception_num<10
+                 ?'0'+newCount[1][i].device_exception_num:newCount[1][i].device_exception_num
+
+               $('.left_top_ul2 .left_top_li .left_top_city')[i].innerHTML = newCount[1][i].project_name
+
+             }
+           }else {
+             let mData = [{
+               "data_warning_num": 0,
+               "project_code": "37020010",
+               "project_name": "济南",
+               "device_exception_num": 0,
+               "data_early_warning_num": 0
+             },
+               {
+                 "data_warning_num": 0,
+                 "project_code": "37020010",
+                 "project_name": "潍坊",
+                 "device_exception_num": 0,
+                 "data_early_warning_num": 0
+               },
+               {
+                 "data_warning_num": 0,
+                 "project_code": "37020010",
+                 "project_name": "泰安",
+                 "device_exception_num": 0,
+                 "data_early_warning_num": 0
+               },
+               {
+                 "data_warning_num": 0,
+                 "project_code": "37020010",
+                 "project_name": "菏泽",
+                 "device_exception_num": 0,
+                 "data_early_warning_num": 0
+               },
+               {
+                 "data_warning_num": 0,
+                 "project_code": "37020010",
+                 "project_name": "临沂",
+                 "device_exception_num": 0,
+                 "data_early_warning_num": 0
+               },
+               {
+                 "data_warning_num": 0,
+                 "project_code": "37020010",
+                 "project_name": "烟台",
+                 "device_exception_num": 0,
+                 "data_early_warning_num": 0
+               },
+               {
+                 "data_warning_num": 0,
+                 "project_code": "37020010",
+                 "project_name": "临清",
+                 "device_exception_num": 0,
+                 "data_early_warning_num": 0
+               },]
+             json.push(...mData)
+             let newCount = vm._sliceArray(json,4)
+             for(let i=0;i<newCount[0].length;i++){
+               $('.left_top_ul').append('<li class="left_top_li">\n' +
+                 '                <ul>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count0 lcdfont"></p>\n' +
+                 '                  </li>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count1 lcdfont_y"></p>\n' +
+                 '                  </li>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count2 lcdfont_y"></p>\n' +
+                 '                  </li>\n' +
+                 '                </ul>\n' +
+                 '                <p  class="left_top_city"></p>\n' +
+                 '              </li>')
+
+               $('.left_top_ul .left_top_li .count0')[i].innerHTML = newCount[0][i].data_warning_num>=0&&newCount[0][i].data_warning_num<10
+                 ?'0'+newCount[0][i].data_warning_num:newCount[0][i].data_warning_num
+               $('.left_top_ul .left_top_li .count1')[i].innerHTML = newCount[0][i].data_early_warning_num>=0&&newCount[0][i].data_early_warning_num<10
+                 ?'0'+newCount[0][i].data_early_warning_num:newCount[0][i].data_early_warning_num
+               $('.left_top_ul .left_top_li .count2')[i].innerHTML = newCount[0][i].device_exception_num>=0&&newCount[0][i].device_exception_num<10
+                 ?'0'+newCount[0][i].device_exception_num:newCount[0][i].device_exception_num
+
+               $('.left_top_ul .left_top_li .left_top_city')[i].innerHTML = newCount[0][i].project_name
+
+             }
+             for(let i=0;i<newCount[1].length;i++){
+               $('.left_top_ul2').append('<li class="left_top_li">\n' +
+                 '                <ul>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count0 lcdfont"></p>\n' +
+                 '                  </li>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count1 lcdfont_y"></p>\n' +
+                 '                  </li>\n' +
+                 '                  <li>\n' +
+                 '                    <p  class="count2 lcdfont_y"></p>\n' +
+                 '                  </li>\n' +
+                 '                </ul>\n' +
+                 '                <p  class="left_top_city"></p>\n' +
+                 '              </li>')
+
+               $('.left_top_ul2 .left_top_li .count0')[i].innerHTML = newCount[1][i].data_warning_num>=0&&newCount[1][i].data_warning_num<10
+                 ?'0'+newCount[1][i].data_warning_num:newCount[1][i].data_warning_num
+               $('.left_top_ul2 .left_top_li .count1')[i].innerHTML = newCount[1][i].data_early_warning_num>=0&&newCount[1][i].data_early_warning_num<10
+                 ?'0'+newCount[1][i].data_early_warning_num:newCount[1][i].data_early_warning_num
+               $('.left_top_ul2 .left_top_li .count2')[i].innerHTML = newCount[1][i].device_exception_num>=0&&newCount[1][i].device_exception_num<10
+                 ?'0'+newCount[1][i].device_exception_num:newCount[1][i].device_exception_num
+
+               $('.left_top_ul2 .left_top_li .left_top_city')[i].innerHTML = newCount[1][i].project_name
+
+             }
            }
-           let newCount = vm._sliceArray(array_left_top,4)
-           for(let i=0;i<newCount[0].length;i++){
-             $('.left_top_ul').append('<li class="left_top_li">\n' +
-               '                <ul>\n' +
-               '                  <li>\n' +
-               '                    <p  class="count0 lcdfont"></p>\n' +
-               '                  </li>\n' +
-               '                  <li>\n' +
-               '                    <p  class="count1 lcdfont_y"></p>\n' +
-               '                  </li>\n' +
-               '                  <li>\n' +
-               '                    <p  class="count2 lcdfont_y"></p>\n' +
-               '                  </li>\n' +
-               '                </ul>\n' +
-               '                <p  class="left_top_city"></p>\n' +
-               '              </li>')
 
-             $('.left_top_ul .left_top_li .count0')[i].innerHTML = array_left_top[i].data_warning_num>=0&&array_left_top[i].data_warning_num<10
-               ?'0'+array_left_top[i].data_warning_num:array_left_top[i].data_warning_num
-             $('.left_top_ul .left_top_li .count1')[i].innerHTML = array_left_top[i].data_early_warning_num>=0&&array_left_top[i].data_early_warning_num<10
-               ?'0'+array_left_top[i].data_early_warning_num:array_left_top[i].data_early_warning_num
-             $('.left_top_ul .left_top_li .count2')[i].innerHTML = array_left_top[i].device_exception_num>=0&&array_left_top[i].device_exception_num<10
-               ?'0'+array_left_top[i].device_exception_num:array_left_top[i].device_exception_num
-
-             $('.left_top_ul .left_top_li .left_top_city')[i].innerHTML = array_left_top[i].project_name
-
-           }
-           for(let i=0;i<newCount[1].length;i++){
-             $('.left_top_ul2').append('<li class="left_top_li">\n' +
-               '                <ul>\n' +
-               '                  <li>\n' +
-               '                    <p  class="count0 lcdfont"></p>\n' +
-               '                  </li>\n' +
-               '                  <li>\n' +
-               '                    <p  class="count1 lcdfont_y"></p>\n' +
-               '                  </li>\n' +
-               '                  <li>\n' +
-               '                    <p  class="count2 lcdfont_y"></p>\n' +
-               '                  </li>\n' +
-               '                </ul>\n' +
-               '                <p  class="left_top_city"></p>\n' +
-               '              </li>')
-
-             $('.left_top_ul2 .left_top_li .count0')[i].innerHTML = array_left_top[i].data_warning_num>=0&&array_left_top[i].data_warning_num<10
-               ?'0'+array_left_top[i].data_warning_num:array_left_top[i].data_warning_num
-             $('.left_top_ul2 .left_top_li .count1')[i].innerHTML = array_left_top[i].data_early_warning_num>=0&&array_left_top[i].data_early_warning_num<10
-               ?'0'+array_left_top[i].data_early_warning_num:array_left_top[i].data_early_warning_num
-             $('.left_top_ul2 .left_top_li .count2')[i].innerHTML = array_left_top[i].device_exception_num>=0&&array_left_top[i].device_exception_num<10
-               ?'0'+array_left_top[i].device_exception_num:array_left_top[i].device_exception_num
-
-             $('.left_top_ul2 .left_top_li .left_top_city')[i].innerHTML = array_left_top[i].project_name
-
-           }
          },
          error: function () {
            // alert('fail');
@@ -518,24 +637,214 @@
         type: 'get',
         async: true,
         cache: true,
-        url: url + '/zzcismp/alarm/getAllProjectEnvDeviceAlarm.shtml',
+        url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
         data: '',
         dataType: 'jsonp',
         jsonp: "callback",
         success: function (json) {
-          vm.Env = json
+          if(json.length===8){
+            vm.Env = json
+          }else {
+            let mData = [
+              {
+              "project_code": "37020010",
+              "alarm_info": [
+                {
+                  "level": undefined,
+                  "exception_num": 0,
+                  "type": "T"
+                },
+                {
+                  "level": undefined,
+                  "exception_num": 0,
+                  "type": "L"
+                },
+                {
+                  "level": undefined,
+                  "exception_num": 0,
+                  "type": "B"
+                },
+                {
+                  "level": undefined,
+                  "exception_num": 0,
+                  "type": "A"
+                }
+              ],
+              "project_name": "济南"
+            },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "T"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "L"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "B"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "潍坊"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "T"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "L"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "B"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "泰安"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "T"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "L"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "B"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "菏泽"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "T"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "L"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "B"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "临沂"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "T"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "L"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "B"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "烟台"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "T"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "L"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "B"
+                  },
+                  {
+                    "level": undefined,
+                    "exception_num": 0,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "临清"
+              },
+            ]
+            json.push(...mData)
+            vm.Env = json
+          }
+
         },
         error: function () {
 
         }
       })
-     //this.$store.dispatch('getAllEnv')
+      //this.$store.dispatch('getAllEnv')
       //中下提示信息
       $.ajax({
         type: 'get',
         async: true,
         cache: true,
-        url: url + '/zzcismp/alarm/getAllProjectDeviceAlarmDetail.shtml',
+        url: url + '/zzcismp/alarm/getDeviceAlarmDetail.shtml',
         data: '',
         dataType: 'jsonp',
         jsonp: "callback",
@@ -548,21 +857,53 @@
 
         }
       })
+      //变形异常
+      $.ajax({
+        type: 'get',
+        async: true,
+        cache: true,
+        url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
+        data: {deviceType:'A'},
+        dataType: 'jsonp',
+        jsonp: "callback",
+        success: function (json) {
+          vm._bian(json)
+        },
+        error: function () {
 
+        }
+      })
+
+      //应力应变异常
+      $.ajax({
+        type: 'get',
+        async: true,
+        cache: true,
+        url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
+        data: {deviceType:'B'},
+        dataType: 'jsonp',
+        jsonp: "callback",
+        success: function (json) {
+          vm._ying(json)
+        },
+        error: function () {
+
+        }
+      })
      this.$store.dispatch('getAllCityV',()=>{
        this.$nextTick(()=>{
          this._jiance(this.allCityC)
          this.cityV = this.allCityC.reverse()
        })
      })
-     this.$store.dispatch('getAllEch',()=>{
-       this.$nextTick(()=>{
-         document.getElementById('city_bian').innerHTML = '<img src="../../static/homeImage/aaa.gif" alt="">'
-         $('#city_bian img').css({transform:'translate(64px,76px)',opacity:0.6})
-         setTimeout(()=>{this._bian(this.allEch)},5000)
-         this._ying(this.allEch)
-       })
-     })
+      /*this.$store.dispatch('getAllEch',()=>{
+        this.$nextTick(()=>{
+          document.getElementById('city_bian').innerHTML = '<img src="../../static/homeImage/aaa.gif" alt="">'
+          $('#city_bian img').css({transform:'translate(64px,76px)',opacity:0.6})
+          setTimeout(()=>{this._bian(this.allEch)},5000)
+          this._ying(this.allEch)
+        })
+      })*/
     },
     methods:{
 	    _jiance(json){
@@ -698,7 +1039,7 @@
         let cityBian = []
 	      for(let i=0;i<json.length;i++){
           cityName.push(json[i].project_name.substring(0,2))
-          cityBian.push(json[i].value.bian)
+          cityBian.push(json[i].alarm_info[0].exception_num)
         }
         let vm = this
         let myChart = vm.$echarts.init(document.getElementById('city_bian'));
@@ -820,7 +1161,7 @@
         let cityYing = []
         for(let i=0;i<json.length;i++){
           cityName.push(json[i].project_name.substring(0,2))
-          cityYing.push(json[i].value.ying)
+          cityYing.push(json[i].alarm_info[0].exception_num)
     }
         let vm = this
         let myChart = vm.$echarts.init(document.getElementById('city_ying'));
@@ -1218,6 +1559,12 @@
                 background linear-gradient(to right, rgb(8,115,58),rgb(57,181,74),rgb(57,181,74))
                 border-radius 50%
                 box-shadow 0 0 10px 1px rgba(8,115,58,.9)
+              .gray_qiu
+                width 6px
+                height 6px
+                background linear-gradient(to right, rgb(109, 109, 109),rgb(127, 127, 127),rgb(127, 127, 127))
+                border-radius 50%
+                box-shadow 0 0 10px 1px rgba(109, 109, 109,.9)
               .city
                 width 80px
                 color #fff
