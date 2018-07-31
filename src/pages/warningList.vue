@@ -15,7 +15,9 @@
             <span style="color:#91a6d2">admin123456</span>
           </div>
           <div>
-            <img src="../../static/warningList/exit.png" alt="">
+            <router-link to="/">
+              <img src="../../static/warningList/exit.png" alt="">
+            </router-link>
           </div>
         </div>
       </header>
