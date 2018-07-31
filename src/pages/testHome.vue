@@ -420,8 +420,8 @@
     },
 	  mounted(){
 	    let vm = this
-      let url = 'http://192.168.20.23:50001'
-      //let url = 'http://36.110.66.214:50001'
+      //let url = 'http://192.168.20.23:50001'
+      let url = 'http://36.110.66.214:50001'
       //192.168.1.46本机IP
       function isIE() { //ie?
         if (!!window.ActiveXObject || "ActiveXObject" in window){
@@ -449,7 +449,7 @@
         type: 'get',
         async: false,
         cache: true,//36.110.66.214:50001
-        url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
+        url: url + '/zzcismp/user/login.shtml?username=admin&password=123456',
         //url: 'http://36.110.66.214:50001/zzcismp/user/login.shtml?username=admin&password=123456',
         dataType: 'jsonp',
         jsonp: "callback",

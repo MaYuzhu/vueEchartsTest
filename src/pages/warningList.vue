@@ -101,14 +101,32 @@
             <span>3</span>
             <span>下一页</span>
           </div>
+          <div><v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination></div>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+    import pagination from '../components/pageInation/pageInation.vue'
     export default {
-        name: "warning-list"
+      name: "warning-list",
+      data(){
+        return {
+          total: 150,     // 记录总条数
+          display: 10,   // 每页显示条数
+          current: 1,   // 当前的页数
+        }},
+      methods: {
+        pagechange:function(currentPage){
+          console.log(currentPage);
+          // ajax请求, 向后台发送 currentPage, 来获取对应的数据
+        }
+        },
+        components: {
+          'v-pagination': pagination,
+        }
+
     }
 </script>
 
@@ -141,7 +159,7 @@
             border-radius 50%
             background #f7931e
             color #fff
-            line-height 14px
+            line-height 15px
             font-size 12px
             text-align center
             transform scale(0.7) translate(5px,-51px)
