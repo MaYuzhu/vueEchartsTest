@@ -276,7 +276,7 @@
               <tr>
                 <td></td>
                 <td class="city_gao"></td>
-                <td class="city_time"><a href="#">更多&gt;&gt;</a></td>
+                <td class="city_time"><router-link to="/warningList">更多&gt;&gt;</router-link></td>
               </tr>
             </table>
 
@@ -299,22 +299,22 @@
                 <td>
                   <div :class="item.alarm_info.filter(a=>a.type=='L')[0]?
                   colorClasses[(item.alarm_info.filter(a=>a.type=='L')[0].level!==undefined?
-                  item.alarm_info.filter(a=>a.type=='L')[0].level:3)]:colorClasses[3]"></div>
+                  item.alarm_info.filter(a=>a.type=='L')[0].level:0)]:colorClasses[0]"></div>
                 </td>
                 <td>
                   <div :class="item.alarm_info.filter(a=>a.type=='T')[0]?
                   colorClasses[(item.alarm_info.filter(a=>a.type=='T')[0].level!==undefined?
-                  item.alarm_info.filter(a=>a.type=='L')[0].level:3)]:colorClasses[3]"></div>
+                  item.alarm_info.filter(a=>a.type=='T')[0].level:0)]:colorClasses[0]"></div>
                 </td>
                 <td>
                   <div :class="item.alarm_info.filter(a=>a.type=='K')[0]?
                   colorClasses[(item.alarm_info.filter(a=>a.type=='K')[0].level!==undefined?
-                  item.alarm_info.filter(a=>a.type=='L')[0].level:3)]:colorClasses[3]"></div>
+                  item.alarm_info.filter(a=>a.type=='K')[0].level:0)]:colorClasses[0]"></div>
                 </td>
                 <td>
                   <div :class="item.alarm_info.filter(a=>a.type=='F')[0]?
                   colorClasses[(item.alarm_info.filter(a=>a.type=='F')[0].level!==undefined?
-                  item.alarm_info.filter(a=>a.type=='L')[0].level:3)]:colorClasses[3]"></div>
+                  item.alarm_info.filter(a=>a.type=='F')[0].level:0)]:colorClasses[0]"></div>
                 </td>
 
               </tr>
@@ -399,7 +399,7 @@
 	export default {
 	  data(){
 	    return{
-        colorClasses:['green_qiu','yellow_qiu','red_qiu','gray_qiu'],
+        colorClasses:['gray_qiu','green_qiu','yellow_qiu','red_qiu'],
         cityV:[],
         Env:[]
       }
@@ -416,18 +416,7 @@
       }*/
     },
     created(){
-      $.ajax({
-        type: 'get',
-        async: true,
-        cache: true,//36.110.66.214:50001
-        url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
-        //url: 'http://36.110.66.214:50001/zzcismp/user/login.shtml?username=admin&password=123456',
-        dataType: 'jsonp',
-        jsonp: "callback",
-        success: function () {},
-        error: function () {}
-        //获取后台数据需要先登录
-      })
+
     },
 	  mounted(){
 	    let vm = this
@@ -456,243 +445,448 @@
        //alert(0)
        //$('.bg').css('height',722)
      }*/
-      //左上角各站预警数据等
-      $.ajax({
-         type: 'get',
-         async: true,
-         cache: true,
-         url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCode.shtml',
-         dataType: 'jsonp',
-         jsonp: "callback",
-         success: function (json) {
-           //console.log(json[0].data_warning_num);
-           if(json.length === 8){
-             let newCount = vm._sliceArray(json,4)
-             for(let i=0;i<newCount[0].length;i++){
-               $('.left_top_ul').append('<li class="left_top_li">\n' +
-                 '                <ul>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count0 lcdfont"></p>\n' +
-                 '                  </li>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count1 lcdfont_y"></p>\n' +
-                 '                  </li>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count2 lcdfont_y"></p>\n' +
-                 '                  </li>\n' +
-                 '                </ul>\n' +
-                 '                <p  class="left_top_city"></p>\n' +
-                 '              </li>')
-
-               $('.left_top_ul .left_top_li .count0')[i].innerHTML = newCount[0][i].data_warning_num>=0&&newCount[0][i].data_warning_num<10
-                 ?'0'+newCount[0][i].data_warning_num:newCount[0][i].data_warning_num
-               $('.left_top_ul .left_top_li .count1')[i].innerHTML = newCount[0][i].data_early_warning_num>=0&&newCount[0][i].data_early_warning_num<10
-                 ?'0'+newCount[0][i].data_early_warning_num:newCount[0][i].data_early_warning_num
-               $('.left_top_ul .left_top_li .count2')[i].innerHTML = newCount[0][i].device_exception_num>=0&&newCount[0][i].device_exception_num<10
-                 ?'0'+newCount[0][i].device_exception_num:newCount[0][i].device_exception_num
-
-               $('.left_top_ul .left_top_li .left_top_city')[i].innerHTML = newCount[0][i].project_name
-
-             }
-             for(let i=0;i<newCount[1].length;i++){
-               $('.left_top_ul2').append('<li class="left_top_li">\n' +
-                 '                <ul>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count0 lcdfont"></p>\n' +
-                 '                  </li>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count1 lcdfont_y"></p>\n' +
-                 '                  </li>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count2 lcdfont_y"></p>\n' +
-                 '                  </li>\n' +
-                 '                </ul>\n' +
-                 '                <p  class="left_top_city"></p>\n' +
-                 '              </li>')
-
-               $('.left_top_ul2 .left_top_li .count0')[i].innerHTML = newCount[1][i].data_warning_num>=0&&newCount[1][i].data_warning_num<10
-                 ?'0'+newCount[1][i].data_warning_num:newCount[1][i].data_warning_num
-               $('.left_top_ul2 .left_top_li .count1')[i].innerHTML = newCount[1][i].data_early_warning_num>=0&&newCount[1][i].data_early_warning_num<10
-                 ?'0'+newCount[1][i].data_early_warning_num:newCount[1][i].data_early_warning_num
-               $('.left_top_ul2 .left_top_li .count2')[i].innerHTML = newCount[1][i].device_exception_num>=0&&newCount[1][i].device_exception_num<10
-                 ?'0'+newCount[1][i].device_exception_num:newCount[1][i].device_exception_num
-
-               $('.left_top_ul2 .left_top_li .left_top_city')[i].innerHTML = newCount[1][i].project_name
-
-             }
-           }else {
-             let mData = [{
-               "data_warning_num": 0,
-               "project_code": "37020010",
-               "project_name": "济南",
-               "device_exception_num": 0,
-               "data_early_warning_num": 0
-             },
-               {
-                 "data_warning_num": 0,
-                 "project_code": "37020010",
-                 "project_name": "潍坊",
-                 "device_exception_num": 0,
-                 "data_early_warning_num": 0
-               },
-               {
-                 "data_warning_num": 0,
-                 "project_code": "37020010",
-                 "project_name": "泰安",
-                 "device_exception_num": 0,
-                 "data_early_warning_num": 0
-               },
-               {
-                 "data_warning_num": 0,
-                 "project_code": "37020010",
-                 "project_name": "菏泽",
-                 "device_exception_num": 0,
-                 "data_early_warning_num": 0
-               },
-               {
-                 "data_warning_num": 0,
-                 "project_code": "37020010",
-                 "project_name": "临沂",
-                 "device_exception_num": 0,
-                 "data_early_warning_num": 0
-               },
-               {
-                 "data_warning_num": 0,
-                 "project_code": "37020010",
-                 "project_name": "烟台",
-                 "device_exception_num": 0,
-                 "data_early_warning_num": 0
-               },
-               {
-                 "data_warning_num": 0,
-                 "project_code": "37020010",
-                 "project_name": "临清",
-                 "device_exception_num": 0,
-                 "data_early_warning_num": 0
-               },]
-             json.push(...mData)
-             let newCount = vm._sliceArray(json,4)
-             for(let i=0;i<newCount[0].length;i++){
-               $('.left_top_ul').append('<li class="left_top_li">\n' +
-                 '                <ul>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count0 lcdfont"></p>\n' +
-                 '                  </li>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count1 lcdfont_y"></p>\n' +
-                 '                  </li>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count2 lcdfont_y"></p>\n' +
-                 '                  </li>\n' +
-                 '                </ul>\n' +
-                 '                <p  class="left_top_city"></p>\n' +
-                 '              </li>')
-
-               $('.left_top_ul .left_top_li .count0')[i].innerHTML = newCount[0][i].data_warning_num>=0&&newCount[0][i].data_warning_num<10
-                 ?'0'+newCount[0][i].data_warning_num:newCount[0][i].data_warning_num
-               $('.left_top_ul .left_top_li .count1')[i].innerHTML = newCount[0][i].data_early_warning_num>=0&&newCount[0][i].data_early_warning_num<10
-                 ?'0'+newCount[0][i].data_early_warning_num:newCount[0][i].data_early_warning_num
-               $('.left_top_ul .left_top_li .count2')[i].innerHTML = newCount[0][i].device_exception_num>=0&&newCount[0][i].device_exception_num<10
-                 ?'0'+newCount[0][i].device_exception_num:newCount[0][i].device_exception_num
-
-               $('.left_top_ul .left_top_li .left_top_city')[i].innerHTML = newCount[0][i].project_name
-
-             }
-             for(let i=0;i<newCount[1].length;i++){
-               $('.left_top_ul2').append('<li class="left_top_li">\n' +
-                 '                <ul>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count0 lcdfont"></p>\n' +
-                 '                  </li>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count1 lcdfont_y"></p>\n' +
-                 '                  </li>\n' +
-                 '                  <li>\n' +
-                 '                    <p  class="count2 lcdfont_y"></p>\n' +
-                 '                  </li>\n' +
-                 '                </ul>\n' +
-                 '                <p  class="left_top_city"></p>\n' +
-                 '              </li>')
-
-               $('.left_top_ul2 .left_top_li .count0')[i].innerHTML = newCount[1][i].data_warning_num>=0&&newCount[1][i].data_warning_num<10
-                 ?'0'+newCount[1][i].data_warning_num:newCount[1][i].data_warning_num
-               $('.left_top_ul2 .left_top_li .count1')[i].innerHTML = newCount[1][i].data_early_warning_num>=0&&newCount[1][i].data_early_warning_num<10
-                 ?'0'+newCount[1][i].data_early_warning_num:newCount[1][i].data_early_warning_num
-               $('.left_top_ul2 .left_top_li .count2')[i].innerHTML = newCount[1][i].device_exception_num>=0&&newCount[1][i].device_exception_num<10
-                 ?'0'+newCount[1][i].device_exception_num:newCount[1][i].device_exception_num
-
-               $('.left_top_ul2 .left_top_li .left_top_city')[i].innerHTML = newCount[1][i].project_name
-
-             }
-           }
-
-         },
-         error: function () {
-           // alert('fail');
-         }
-       })
-      //this.$store.dispatch('getAllCount')
-      //右上风力温度等
-      $.ajax({
+      const ajax1= $.ajax({
         type: 'get',
-        async: true,
-        cache: true,
-        url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
-        data: '',
+        async: false,
+        cache: true,//36.110.66.214:50001
+        url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
+        //url: 'http://36.110.66.214:50001/zzcismp/user/login.shtml?username=admin&password=123456',
         dataType: 'jsonp',
         jsonp: "callback",
-        success: function (json) {
-          if(json.length===8){
-            vm.Env = json
-          }else {
+        success: function () {},
+        error: function () {}
+        //获取后台数据需要先登录
+      })//请求接口先登录
+      $.when(ajax1).done(() =>{
+        //左上角各站预警数据等
+        $.ajax({
+          type: 'get',
+          async: true,
+          cache: true,
+          url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCode.shtml',
+          dataType: 'jsonp',
+          jsonp: "callback",
+          success: function (json) {
+            //console.log(json[0].data_warning_num);
+            if(json.length === 8){
+              let newCount = vm._sliceArray(json,4)
+              for(let i=0;i<newCount[0].length;i++){
+                $('.left_top_ul').append('<li class="left_top_li">\n' +
+                  '                <ul>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count0 lcdfont"></p>\n' +
+                  '                  </li>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count1 lcdfont_y"></p>\n' +
+                  '                  </li>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count2 lcdfont_y"></p>\n' +
+                  '                  </li>\n' +
+                  '                </ul>\n' +
+                  '                <p  class="left_top_city"></p>\n' +
+                  '              </li>')
+
+                $('.left_top_ul .left_top_li .count0')[i].innerHTML = newCount[0][i].data_warning_num>=0&&newCount[0][i].data_warning_num<10
+                  ?'0'+newCount[0][i].data_warning_num:newCount[0][i].data_warning_num
+                $('.left_top_ul .left_top_li .count1')[i].innerHTML = newCount[0][i].data_early_warning_num>=0&&newCount[0][i].data_early_warning_num<10
+                  ?'0'+newCount[0][i].data_early_warning_num:newCount[0][i].data_early_warning_num
+                $('.left_top_ul .left_top_li .count2')[i].innerHTML = newCount[0][i].device_exception_num>=0&&newCount[0][i].device_exception_num<10
+                  ?'0'+newCount[0][i].device_exception_num:newCount[0][i].device_exception_num
+
+                $('.left_top_ul .left_top_li .left_top_city')[i].innerHTML = newCount[0][i].project_name
+
+              }
+              for(let i=0;i<newCount[1].length;i++){
+                $('.left_top_ul2').append('<li class="left_top_li">\n' +
+                  '                <ul>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count0 lcdfont"></p>\n' +
+                  '                  </li>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count1 lcdfont_y"></p>\n' +
+                  '                  </li>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count2 lcdfont_y"></p>\n' +
+                  '                  </li>\n' +
+                  '                </ul>\n' +
+                  '                <p  class="left_top_city"></p>\n' +
+                  '              </li>')
+
+                $('.left_top_ul2 .left_top_li .count0')[i].innerHTML = newCount[1][i].data_warning_num>=0&&newCount[1][i].data_warning_num<10
+                  ?'0'+newCount[1][i].data_warning_num:newCount[1][i].data_warning_num
+                $('.left_top_ul2 .left_top_li .count1')[i].innerHTML = newCount[1][i].data_early_warning_num>=0&&newCount[1][i].data_early_warning_num<10
+                  ?'0'+newCount[1][i].data_early_warning_num:newCount[1][i].data_early_warning_num
+                $('.left_top_ul2 .left_top_li .count2')[i].innerHTML = newCount[1][i].device_exception_num>=0&&newCount[1][i].device_exception_num<10
+                  ?'0'+newCount[1][i].device_exception_num:newCount[1][i].device_exception_num
+
+                $('.left_top_ul2 .left_top_li .left_top_city')[i].innerHTML = newCount[1][i].project_name
+
+              }
+            }else {
+              let mData = [{
+                "data_warning_num": 0,
+                "project_code": "37020010",
+                "project_name": "济南",
+                "device_exception_num": 0,
+                "data_early_warning_num": 0
+              },
+                {
+                  "data_warning_num": 0,
+                  "project_code": "37020010",
+                  "project_name": "潍坊",
+                  "device_exception_num": 0,
+                  "data_early_warning_num": 0
+                },
+                {
+                  "data_warning_num": 0,
+                  "project_code": "37020010",
+                  "project_name": "泰安",
+                  "device_exception_num": 0,
+                  "data_early_warning_num": 0
+                },
+                {
+                  "data_warning_num": 0,
+                  "project_code": "37020010",
+                  "project_name": "菏泽",
+                  "device_exception_num": 0,
+                  "data_early_warning_num": 0
+                },
+                {
+                  "data_warning_num": 0,
+                  "project_code": "37020010",
+                  "project_name": "临沂",
+                  "device_exception_num": 0,
+                  "data_early_warning_num": 0
+                },
+                {
+                  "data_warning_num": 0,
+                  "project_code": "37020010",
+                  "project_name": "烟台",
+                  "device_exception_num": 0,
+                  "data_early_warning_num": 0
+                },
+                {
+                  "data_warning_num": 0,
+                  "project_code": "37020010",
+                  "project_name": "临清",
+                  "device_exception_num": 0,
+                  "data_early_warning_num": 0
+                },]
+              json.push(...mData)
+              let newCount = vm._sliceArray(json,4)
+              for(let i=0;i<newCount[0].length;i++){
+                $('.left_top_ul').append('<li class="left_top_li">\n' +
+                  '                <ul>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count0 lcdfont"></p>\n' +
+                  '                  </li>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count1 lcdfont_y"></p>\n' +
+                  '                  </li>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count2 lcdfont_y"></p>\n' +
+                  '                  </li>\n' +
+                  '                </ul>\n' +
+                  '                <p  class="left_top_city"></p>\n' +
+                  '              </li>')
+
+                $('.left_top_ul .left_top_li .count0')[i].innerHTML = newCount[0][i].data_warning_num>=0&&newCount[0][i].data_warning_num<10
+                  ?'0'+newCount[0][i].data_warning_num:newCount[0][i].data_warning_num
+                $('.left_top_ul .left_top_li .count1')[i].innerHTML = newCount[0][i].data_early_warning_num>=0&&newCount[0][i].data_early_warning_num<10
+                  ?'0'+newCount[0][i].data_early_warning_num:newCount[0][i].data_early_warning_num
+                $('.left_top_ul .left_top_li .count2')[i].innerHTML = newCount[0][i].device_exception_num>=0&&newCount[0][i].device_exception_num<10
+                  ?'0'+newCount[0][i].device_exception_num:newCount[0][i].device_exception_num
+
+                $('.left_top_ul .left_top_li .left_top_city')[i].innerHTML = newCount[0][i].project_name
+
+              }
+              for(let i=0;i<newCount[1].length;i++){
+                $('.left_top_ul2').append('<li class="left_top_li">\n' +
+                  '                <ul>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count0 lcdfont"></p>\n' +
+                  '                  </li>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count1 lcdfont_y"></p>\n' +
+                  '                  </li>\n' +
+                  '                  <li>\n' +
+                  '                    <p  class="count2 lcdfont_y"></p>\n' +
+                  '                  </li>\n' +
+                  '                </ul>\n' +
+                  '                <p  class="left_top_city"></p>\n' +
+                  '              </li>')
+
+                $('.left_top_ul2 .left_top_li .count0')[i].innerHTML = newCount[1][i].data_warning_num>=0&&newCount[1][i].data_warning_num<10
+                  ?'0'+newCount[1][i].data_warning_num:newCount[1][i].data_warning_num
+                $('.left_top_ul2 .left_top_li .count1')[i].innerHTML = newCount[1][i].data_early_warning_num>=0&&newCount[1][i].data_early_warning_num<10
+                  ?'0'+newCount[1][i].data_early_warning_num:newCount[1][i].data_early_warning_num
+                $('.left_top_ul2 .left_top_li .count2')[i].innerHTML = newCount[1][i].device_exception_num>=0&&newCount[1][i].device_exception_num<10
+                  ?'0'+newCount[1][i].device_exception_num:newCount[1][i].device_exception_num
+
+                $('.left_top_ul2 .left_top_li .left_top_city')[i].innerHTML = newCount[1][i].project_name
+
+              }
+            }
+
+          },
+          error: function () {
+            // alert('fail');
+          }
+        })
+        //this.$store.dispatch('getAllCount')
+        //右上风力温度等
+        $.ajax({
+          type: 'get',
+          async: true,
+          cache: true,
+          url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
+          data: '',
+          dataType: 'jsonp',
+          jsonp: "callback",
+          success: function (json) {
+            if(json.length===8){
+              vm.Env = json
+            }else {
+              let mData = [
+                {
+                  "project_code": "37020010",
+                  "alarm_info": [
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "T"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "L"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "B"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "A"
+                    }
+                  ],
+                  "project_name": "济南"
+                },
+                {
+                  "project_code": "37020010",
+                  "alarm_info": [
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "T"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "L"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "B"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "A"
+                    }
+                  ],
+                  "project_name": "潍坊"
+                },
+                {
+                  "project_code": "37020010",
+                  "alarm_info": [
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "T"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "L"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "B"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "A"
+                    }
+                  ],
+                  "project_name": "泰安"
+                },
+                {
+                  "project_code": "37020010",
+                  "alarm_info": [
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "T"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "L"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "B"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "A"
+                    }
+                  ],
+                  "project_name": "菏泽"
+                },
+                {
+                  "project_code": "37020010",
+                  "alarm_info": [
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "T"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "L"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "B"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "A"
+                    }
+                  ],
+                  "project_name": "临沂"
+                },
+                {
+                  "project_code": "37020010",
+                  "alarm_info": [
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "T"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "L"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "B"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "A"
+                    }
+                  ],
+                  "project_name": "烟台"
+                },
+                {
+                  "project_code": "37020010",
+                  "alarm_info": [
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "T"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "L"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "B"
+                    },
+                    {
+                      "level": undefined,
+                      "exception_num": 0,
+                      "type": "A"
+                    }
+                  ],
+                  "project_name": "临清"
+                },
+              ]
+              json.push(...mData)
+              vm.Env = json
+            }
+
+          },
+          error: function () {
+
+          }
+        })
+        //this.$store.dispatch('getAllEnv')
+        //中下提示信息
+        $.ajax({
+          type: 'get',
+          async: true,
+          cache: true,
+          url: url + ' ',
+          data: '',
+          dataType: 'jsonp',
+          jsonp: "callback",
+          success: function (json) {
+            let a = json.filter((item)=>{return item.projname == "青岛北站"})
+            $('.qing .city_gao').text(a[0].alarm_reason)
+            $('.qing .city_time').text(a[0].alarm_time.substring(0,10))
+          },
+          error: function () {
+
+          }
+        })
+        //变形异常
+        $.ajax({
+          type: 'get',
+          async: true,
+          cache: true,
+          url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
+          data: {deviceType:'A'},
+          dataType: 'jsonp',
+          jsonp: "callback",
+          success: function (json) {
             let mData = [
-              {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": undefined,
-                  "exception_num": 0,
-                  "type": "T"
-                },
-                {
-                  "level": undefined,
-                  "exception_num": 0,
-                  "type": "L"
-                },
-                {
-                  "level": undefined,
-                  "exception_num": 0,
-                  "type": "B"
-                },
-                {
-                  "level": undefined,
-                  "exception_num": 0,
-                  "type": "A"
-                }
-              ],
-              "project_name": "济南"
-            },
               {
                 "project_code": "37020010",
                 "alarm_info": [
                   {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "T"
-                  },
+                    "level": 0,
+                    "exception_num": 2,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "济南"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
                   {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "L"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "B"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
+                    "level": 0,
+                    "exception_num": 3,
                     "type": "A"
                   }
                 ],
@@ -702,23 +896,8 @@
                 "project_code": "37020010",
                 "alarm_info": [
                   {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "T"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "L"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "B"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
+                    "level": 0,
+                    "exception_num": 1,
                     "type": "A"
                   }
                 ],
@@ -728,23 +907,8 @@
                 "project_code": "37020010",
                 "alarm_info": [
                   {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "T"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "L"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "B"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
+                    "level": 0,
+                    "exception_num": 4,
                     "type": "A"
                   }
                 ],
@@ -754,23 +918,8 @@
                 "project_code": "37020010",
                 "alarm_info": [
                   {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "T"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "L"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "B"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
+                    "level": 0,
+                    "exception_num": 5,
                     "type": "A"
                   }
                 ],
@@ -780,23 +929,8 @@
                 "project_code": "37020010",
                 "alarm_info": [
                   {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "T"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "L"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "B"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
+                    "level": 0,
+                    "exception_num": 1,
                     "type": "A"
                   }
                 ],
@@ -806,262 +940,139 @@
                 "project_code": "37020010",
                 "alarm_info": [
                   {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "T"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "L"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
-                    "type": "B"
-                  },
-                  {
-                    "level": undefined,
-                    "exception_num": 0,
+                    "level": 0,
+                    "exception_num": 3,
                     "type": "A"
                   }
                 ],
                 "project_name": "临清"
               },
+
             ]
-            json.push(...mData)
-            vm.Env = json
+            if(json.length===8){
+              vm._bian(json)
+              $('#city_bian').css({background:'none'})
+            }else {
+              setTimeout(()=>{
+                json.push(...mData)
+                vm._bian(json)
+                $('#city_bian').css({background:'none'})
+              },2000)
+            }
+
+          },
+          error: function () {
           }
+        })
 
-        },
-        error: function () {
+        //应力应变异常
+        $.ajax({
+          type: 'get',
+          async: true,
+          cache: true,
+          url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
+          data: {deviceType:'B'},
+          dataType: 'jsonp',
+          jsonp: "callback",
+          success: function (json) {
+            let mData = [
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": 0,
+                    "exception_num": 2,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "济南"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": 0,
+                    "exception_num": 3,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "潍坊"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": 0,
+                    "exception_num": 1,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "泰安"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": 0,
+                    "exception_num": 4,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "菏泽"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": 0,
+                    "exception_num": 5,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "临沂"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": 0,
+                    "exception_num": 3,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "烟台"
+              },
+              {
+                "project_code": "37020010",
+                "alarm_info": [
+                  {
+                    "level": 0,
+                    "exception_num": 2,
+                    "type": "A"
+                  }
+                ],
+                "project_name": "临清"
+              },
 
-        }
-      })
-      //this.$store.dispatch('getAllEnv')
-      //中下提示信息
-      $.ajax({
-        type: 'get',
-        async: true,
-        cache: true,
-        url: url + '/zzcismp/alarm/getDeviceAlarmDetail.shtml',
-        data: '',
-        dataType: 'jsonp',
-        jsonp: "callback",
-        success: function (json) {
-          let a = json.filter((item)=>{return item.projname == "青岛北站"})
-          $('.qing .city_gao').text(a[0].alarm_reason)
-          $('.qing .city_time').text(a[0].alarm_time.substring(0,10))
-        },
-        error: function () {
+            ]
+            if(json.length===8){
+              vm._ying(json)
+              $('#city_ying').css({background:'none'})
+            }else {
+              json.push(...mData)
+              vm._ying(json)
+              $('#city_ying').css({background:'none'})
+            }
 
-        }
-      })
-      //变形异常
-      $.ajax({
-        type: 'get',
-        async: true,
-        cache: true,
-        url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
-        data: {deviceType:'A'},
-        dataType: 'jsonp',
-        jsonp: "callback",
-        success: function (json) {
-          let mData = [
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 2,
-                  "type": "A"
-                }
-              ],
-              "project_name": "济南"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 3,
-                  "type": "A"
-                }
-              ],
-              "project_name": "潍坊"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 1,
-                  "type": "A"
-                }
-              ],
-              "project_name": "泰安"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 4,
-                  "type": "A"
-                }
-              ],
-              "project_name": "菏泽"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 5,
-                  "type": "A"
-                }
-              ],
-              "project_name": "临沂"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 1,
-                  "type": "A"
-                }
-              ],
-              "project_name": "烟台"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 3,
-                  "type": "A"
-                }
-              ],
-              "project_name": "临清"
-            },
 
-          ]
-          if(json.length===8){
-            vm._bian(json)
-          }else {
-            json.push(...mData)
-            vm._bian(json)
+          },
+          error: function () {
+
           }
+        })
 
-        },
-        error: function () {
-
-        }
       })
 
-      //应力应变异常
-      $.ajax({
-        type: 'get',
-        async: true,
-        cache: true,
-        url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
-        data: {deviceType:'B'},
-        dataType: 'jsonp',
-        jsonp: "callback",
-        success: function (json) {
-          let mData = [
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 2,
-                  "type": "A"
-                }
-              ],
-              "project_name": "济南"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 3,
-                  "type": "A"
-                }
-              ],
-              "project_name": "潍坊"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 1,
-                  "type": "A"
-                }
-              ],
-              "project_name": "泰安"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 4,
-                  "type": "A"
-                }
-              ],
-              "project_name": "菏泽"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 5,
-                  "type": "A"
-                }
-              ],
-              "project_name": "临沂"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 3,
-                  "type": "A"
-                }
-              ],
-              "project_name": "烟台"
-            },
-            {
-              "project_code": "37020010",
-              "alarm_info": [
-                {
-                  "level": 0,
-                  "exception_num": 2,
-                  "type": "A"
-                }
-              ],
-              "project_name": "临清"
-            },
-
-          ]
-          if(json.length===8){
-            vm._ying(json)
-          }else {
-            json.push(...mData)
-            vm._ying(json)
-          }
-
-        },
-        error: function () {
-
-        }
-      })
      this.$store.dispatch('getAllCityV',()=>{
        this.$nextTick(()=>{
          this._jiance(this.allCityC)
@@ -1776,6 +1787,7 @@
                 height 120%
                 opacity 0.6
             #city_bian,#city_ying
+              background url('../../static/homeImage/aaa.gif') no-repeat 50% 70%
               height 140px
           .right_bottom
             background-image url("../../static/homeImage/k5.png")

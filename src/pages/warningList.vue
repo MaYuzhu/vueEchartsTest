@@ -1,0 +1,198 @@
+<template>
+    <div class="wrap">
+      <header>
+        <div class="left">
+          <img src="../../static/warningList/logo.png" alt="">
+          <span>铁路客站结构健康监测平台</span>
+        </div>
+        <div class="right">
+          <div>
+            <img src="../../static/warningList/jingbao.png" alt="">
+            <span class="count">2</span>
+          </div>
+          <div>
+            <img src="../../static/warningList/yonghu.png" alt="">
+            <span style="color:#91a6d2">admin123456</span>
+          </div>
+          <div>
+            <img src="../../static/warningList/exit.png" alt="">
+          </div>
+        </div>
+      </header>
+      <div class="content">
+        <div style="width:96%;margin:8px auto">
+          <div class="sousuo">
+            <input type="text" placeholder="请输入站名,如'济南站'">
+            <div class="sou">
+              <img src="../../static/warningList/sou1.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <th>序号</th>
+            <th>监测区域</th>
+            <th>预警原因</th>
+            <th>预警处理</th>
+            <th>预警时间</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>济南站XXX</td>
+            <td>XXXs设备恢复接入数据，警报解除。</td>
+            <td>未处理</td>
+            <td>2018-7-31 15:49:22</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>济南站XXX</td>
+            <td>XXXs设备近三小时降雨量5.9mm,请关注</td>
+            <td>未处理</td>
+            <td>2018-7-31 15:49:22</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>济南站XXX</td>
+            <td>XXXs设备近三小时降雨量5.9mm,请关注。</td>
+            <td>未处理</td>
+            <td>2018-7-31 15:49:22</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>济南站XXX</td>
+            <td>XXXs设备恢复借入数据，警报解除。</td>
+            <td>未处理</td>
+            <td>2018-7-31 15:49:22</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>济南站XXX</td>
+            <td>XXXs设备恢复接入数据，警报解除。</td>
+            <td>未处理</td>
+            <td>2018-7-31 15:49:22</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>济南站XXX</td>
+            <td>XXXs设备近三小时降雨量5.9mm,请关注</td>
+            <td>未处理</td>
+            <td>2018-7-31 15:49:22</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>济南站XXX</td>
+            <td>XXXs设备近三小时降雨量5.9mm,请关注。</td>
+            <td>未处理</td>
+            <td>2018-7-31 15:49:22</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>济南站XXX</td>
+            <td>XXXs设备恢复借入数据，警报解除。</td>
+            <td>未处理</td>
+            <td>2018-7-31 15:49:22</td>
+          </tr>
+        </table>
+        <div style="width:96%;margin:80px auto">
+          <div class="page">
+            <span>上一页</span>
+            <span>1</span>
+            <span>...</span>
+            <span>3</span>
+            <span>下一页</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "warning-list"
+    }
+</script>
+
+<style lang="stylus" scoped>
+  .wrap
+    width 100%
+    min-width 1200px
+    header
+      width 100%
+      height 50px
+      margin 0 auto
+      background #1753ab
+      display flex
+      justify-content space-between
+      .left
+        line-height 50px
+        font-size 18px
+        color #fff
+        img
+          margin -5px 8px 0 20px
+      .right
+        display flex
+        line-height 46px
+        >div
+          margin 0 10px
+          .count
+            display block
+            width 16px
+            height 16px
+            border-radius 50%
+            background #f7931e
+            color #fff
+            line-height 14px
+            font-size 12px
+            text-align center
+            transform scale(0.7) translate(5px,-51px)
+        >:last-child
+          margin-right 28px
+
+    .content
+      width 100%
+      margin 0 auto
+      padding-top 16px
+      box-sizing border-box
+      .sousuo
+        width 164px
+        height 20px
+        border 1px solid #d9d9d9
+        display flex
+        input
+          width 140px
+          padding-left 10px
+          border 0px
+          outline none
+        >div
+          width 24px
+          height 20px
+          background #2d81f7
+          line-height 17px
+          text-align center
+          transform translate(1px,-1px)
+          img
+            width 70%
+            height 70%
+
+      table
+        width 96%
+        border 1px solid #e0e0e0
+        margin 0 auto
+        th
+          height 30px
+          background #576cc4
+          color #fff
+        td
+          height 36px
+          color #333
+        >:nth-child(2n+2)
+          background #f8fdfe
+        >:nth-child(2n+3)
+          background #dde5f5
+        >tr td:nth-child(3)
+          text-align center
+
+
+      .page
+        float right
+</style>

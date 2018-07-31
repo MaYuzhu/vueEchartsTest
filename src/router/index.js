@@ -10,6 +10,7 @@ import device_manage from '../pages/device_manage/device_manage.vue'
 import jiegou_fenxi from '../pages/jiegou_fenxi/jiegou_fenxi.vue'
 
 import testHome from '../pages/testHome.vue'
+import warningList from '../pages/warningList.vue'
 
 Vue.use(Router)
 
@@ -21,6 +22,13 @@ export default new Router({
     {
       path:'/',
       component:testHome,
+      meta:{
+        showHeader:false
+      }
+    },
+    {
+      path:'/warningList',
+      component:warningList,
       meta:{
         showHeader:false
       }
