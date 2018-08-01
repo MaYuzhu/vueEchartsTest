@@ -426,8 +426,9 @@
       function isIE() { //ie?
         if (!!window.ActiveXObject || "ActiveXObject" in window){
           //alert(1111111)
-          $('.title_p').html('<span>铁路客站结构健康检测平台</span>')
+          $('.title_p').html('<span style="background:rgba(255,255,255,0)">铁路客站结构健康检测平台</span>')
           $('.title_p span').css("color","white")
+          //$('.title_p').css("background","red")
         }
       }
       isIE()
@@ -846,7 +847,7 @@
           type: 'get',
           async: true,
           cache: true,
-          url: url + ' ',
+          url: url + '/zzcismp/alarm/getDeviceAlarmDetail.shtml',
           data: '',
           dataType: 'jsonp',
           jsonp: "callback",

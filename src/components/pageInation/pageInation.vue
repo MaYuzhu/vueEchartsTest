@@ -1,14 +1,24 @@
 
 <template>
   <nav>
-    <ul class="pagination">
-      <li :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(current - 1)"> « </a></li>
-      <li :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(1)"> 首页 </a></li>
-      <li v-for="p in grouplist" :class="{'active': current == p.val}"><a href="javascript:;"
-                                                                          @click="setCurrent(p.val)"> {{ p.text }} </a>
+    <ul class="page_ination">
+      <li>
+        <a :class="{'disabled': current == 1}" href="javascript:;" @click="setCurrent(current - 1)">上一页</a>
       </li>
-      <li :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(page)"> 尾页 </a></li>
-      <li :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(current + 1)"> »</a></li>
+      <li>
+        <a :class="{'disabled': current == 1}" href="javascript:;" @click="setCurrent(1)"> 首页 </a>
+      </li>
+      <li v-for="p in grouplist" :class="{'active': current == p.val}">
+        <a href="javascript:;"
+           @click="setCurrent(p.val)"> {{ p.text }}
+        </a>
+      </li>
+      <li :class="{'disabled': current == page}">
+        <a :class="{'disabled': current == page}" href="javascript:;" @click="setCurrent(page)"> 尾页 </a>
+      </li>
+      <li :class="{'disabled': current == page}">
+        <a :class="{'disabled': current == page}" href="javascript:;" @click="setCurrent(current + 1)">下一页</a>
+      </li>
     </ul>
   </nav>
 </template>
@@ -89,49 +99,41 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  .pagination {
-    overflow: hidden;
-    display: table;
-    margin: 0 auto;
-    /*width: 100%;*/
-    height: 50px;
+  .page_ination
+    overflow hidden
+    display table
+    float right
+    height 30px
+    .disabled
+      cursor not-allowed
+    >:last-child
+      border 1px solid #e0e0e0
+      a
+        width 50px
+    >:first-child
+      a
+        width 50px
+    li
+      float left
+      border 1px solid #e0e0e0
+      border-right none
+      &:hover
+        a
+          background rgba(30, 159, 255, 0.8)
+          color #fff
+      a
+        display block
+        width 30px
+        height 30px
+        text-align center
+        line-height 30px
+        font-size 12px
+        text-decoration none
 
-    li {
-      float: left;
-      height: 30px;
-      border-radius: 5px;
-      margin: 3px;
-      color: #666;
 
-      &
-      :hover {
-        background: #000;
-
-        a {
-          color: #fff;
-        }
-
-      }
-      a {
-        display: block;
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        line-height: 30px;
-        font-size: 12px;
-        border-radius: 5px;
-        text-decoration: none
-      }
-
-    }
-    .active {
-      background: #000;
-
-      a {
-        color: #fff;
-      }
-
-    }
-  }
+    .active
+      background #1e9fff
+      a
+        color #fff
 
 </style>

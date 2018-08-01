@@ -96,14 +96,9 @@
           </tr>
         </table>
         <div style="width:96%;margin:80px auto">
-          <div class="page">
-            <span>上一页</span>
-            <span>1</span>
-            <span>...</span>
-            <span>3</span>
-            <span>下一页</span>
+          <div>
+            <v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination>
           </div>
-          <div><v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination></div>
         </div>
       </div>
     </div>
@@ -123,11 +118,14 @@
         pagechange:function(currentPage){
           console.log(currentPage);
           // ajax请求, 向后台发送 currentPage, 来获取对应的数据
-        }
+          },
+        a: function(){alert(100)}
         },
-        components: {
-          'v-pagination': pagination,
-        }
+
+      components: {
+        'v-pagination': pagination,
+      },
+
 
     }
 </script>
