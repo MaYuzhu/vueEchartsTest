@@ -95,9 +95,10 @@
             <td>2018-7-31 15:49:22</td>
           </tr>
         </table>
-        <div style="width:96%;margin:80px auto">
-          <div>
-            <v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination>
+        <div style="width:96%;margin:80px auto auto">
+          <h2 style="float: right">当前第<span  style="color: red;font-size: 22px">{{current}}</span>页</h2>
+          <div style="float: right">
+            <pageIn2 :totalPages="totalPages" :current-page='current' @pagechangeOn="pagechangeOn"></pageIn2>
           </div>
         </div>
       </div>
@@ -105,25 +106,42 @@
 </template>
 
 <script>
-    import pagination from '../components/pageInation/pageInation.vue'
+    import pageIn2 from '../components/pageIn2/pageIn2'
     export default {
       name: "warning-list",
       data(){
         return {
-          total: 150,     // 记录总条数
-          display: 10,   // 每页显示条数
+          total:50,
+          totalPages: 40,     // 记录总条数
+          display: 5,   // 每页显示条数
           current: 1,   // 当前的页数
         }},
       methods: {
         pagechange:function(currentPage){
-          console.log(currentPage);
+          //console.log(currentPage);
           // ajax请求, 向后台发送 currentPage, 来获取对应的数据
+          this.current = currentPage
           },
-        a: function(){alert(100)}
+        pagechangeOn:function(c){
+          this.current = c
+          $.ajax({
+            type: 'get',
+            async: false,
+            //data:{p:c},
+            cache: true,//36.110.66.214:50001
+            url: '/page',
+            dataType: 'json',
+            jsonp: "callback",
+            success: function (json) {
+              console.log(json)
+            },
+            error: function () {}
+          })
+        },
         },
 
       components: {
-        'v-pagination': pagination,
+        pageIn2,
       },
 
 
