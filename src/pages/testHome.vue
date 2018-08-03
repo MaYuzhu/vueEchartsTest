@@ -240,7 +240,7 @@
               </tr>
               <tr class="qing">
                 <td >
-                  <div class="city qingdao">青岛站</div>
+                  <div class="city qingdao">青岛北站</div>
                 </td>
                 <td class="city_gao">S1设备告警，超出预警值，XXXXXX请加强关注</td>
                 <td class="city_time">2018-07-11</td>
@@ -958,7 +958,7 @@
                 json.push(...mData)
                 vm._bian(json)
                 $('#city_bian').css({background:'none'})
-              },2000)
+              },500)
             }
 
           },

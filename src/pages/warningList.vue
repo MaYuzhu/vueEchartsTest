@@ -38,14 +38,14 @@
             <th>预警处理</th>
             <th>预警时间</th>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>济南站XXX</td>
-            <td>XXXs设备恢复接入数据，警报解除。</td>
+          <tr v-for="(item,index) in textData" :key="index">
+            <td>{{1+index+(current-1)*display}}</td>
+            <td>{{item.projname}}</td>
+            <td>{{item.alarm_reason}}</td>
             <td>未处理</td>
-            <td>2018-7-31 15:49:22</td>
+            <td>{{item.alarm_time}}</td>
           </tr>
-          <tr>
+          <!--<tr>
             <td>2</td>
             <td>济南站XXX</td>
             <td>XXXs设备近三小时降雨量5.9mm,请关注</td>
@@ -93,12 +93,14 @@
             <td>XXXs设备恢复借入数据，警报解除。</td>
             <td>未处理</td>
             <td>2018-7-31 15:49:22</td>
-          </tr>
+          </tr>-->
         </table>
         <div style="width:96%;margin:80px auto auto">
           <h2 style="float: right">当前第<span  style="color: red;font-size: 22px">{{current}}</span>页</h2>
           <div style="float: right">
-            <pageIn2 :totalPages="totalPages" :current-page='current' @pagechangeOn="pagechangeOn"></pageIn2>
+            <pageIn2 :totalPages="totalPages" :current-page='current'
+                     :display="display"
+                     @pagechangeOn="pagechangeOn"></pageIn2>
           </div>
         </div>
       </div>
@@ -109,12 +111,13 @@
     import pageIn2 from '../components/pageIn2/pageIn2'
     export default {
       name: "warning-list",
+
       data(){
         return {
-          total:50,
-          totalPages: 40,     // 记录总条数
-          display: 5,   // 每页显示条数
+          totalPages: 21,     // 记录总条数
+          display: 3,   // 每页显示条数
           current: 1,   // 当前的页数
+          textData:[]
         }},
       methods: {
         pagechange:function(currentPage){
@@ -123,17 +126,18 @@
           this.current = currentPage
           },
         pagechangeOn:function(c){
+          let vm = this
           this.current = c
           $.ajax({
             type: 'get',
             async: false,
-            //data:{p:c},
+            data:{p:c},
             cache: true,//36.110.66.214:50001
             url: '/page',
             dataType: 'json',
             jsonp: "callback",
             success: function (json) {
-              console.log(json)
+              vm.textData = json
             },
             error: function () {}
           })
@@ -143,7 +147,22 @@
       components: {
         pageIn2,
       },
-
+      mounted(){
+        let vm = this
+        $.ajax({
+          type: 'get',
+          async: false,
+          data:{p:1},
+          cache: true,//36.110.66.214:50001
+          url: '/page',
+          dataType: 'json',
+          jsonp: "callback",
+          success: function (json) {
+            vm.textData = json
+          },
+          error: function () {}
+        })
+      }
 
     }
 </script>

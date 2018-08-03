@@ -10,7 +10,7 @@
         <span>{{item}}</span>
       </li>
       <li @click="prevOrNext(1)" class="page last-child">
-        <span :class="{'disabled':currentPage===totalPages}" aria-hidden="true">下一页</span>
+        <span :class="{'disabled':currentPage===pagegroup}" aria-hidden="true">下一页</span>
       </li>
     </ul>
   </div>
@@ -30,25 +30,24 @@
       },
       display: {// 每页显示条数
         type: Number,
-        default: 10
+        default: 0
       },
       currentPage1: {// 当前页码
         type: Number,
         default: 1
       },
-      pagegroup: {// 分页条数
+      /*pagegroup: {// 页数
         type: Number,
-        default: 5,
+        //default: 7,
         coerce: function (v) {
-          v = v > 0 ? v : 5;
-          return v % 2 === 1 ? v : v + 1;
+          return Math.ceil(this.totalPages/this.display)
         }
-      }
+      }*/
     },
     computed: {
       pages() {
         const c = this.currentPage
-        const t = this.totalPages
+        const t = this.pagegroup
         if (c <= 5) {
           return [1, 2, 3, 4, 5, '...', t] //第一种情况
         } else if (c >= t - 4) {
@@ -56,6 +55,9 @@
         } else {
           return [1, '...', c-1, c, c+1, '...', t] //第三种情况
         }
+      },
+      pagegroup(){
+        return Math.ceil(this.totalPages/this.display)
       }
     },
     methods: {
@@ -69,8 +71,8 @@
         this.currentPage += n
         this.currentPage < 1
           ? this.currentPage = 1
-          : this.currentPage > this.totalPages
-          ? this.currentPage = this.totalPages
+          : this.currentPage > this.pagegroup
+          ? this.currentPage = this.pagegroup
           : null
         this.$emit('pagechangeOn', this.currentPage)
       }
