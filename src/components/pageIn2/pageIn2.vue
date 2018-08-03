@@ -48,7 +48,13 @@
       pages() {
         const c = this.currentPage
         const t = this.pagegroup
-        if (c <= 5) {
+        if(t <= 5){
+        	let arr = []
+          for(let i=0;i<t;i++){
+        		arr.push(i+1)
+          }
+          return arr
+        } else if (c <= 5) {
           return [1, 2, 3, 4, 5, '...', t] //第一种情况
         } else if (c >= t - 4) {
           return [1, '...', t-4, t-3, t-2, t-1, t] //第二种情况
