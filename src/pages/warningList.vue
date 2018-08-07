@@ -111,7 +111,6 @@
     import pageIn2 from '../components/pageIn2/pageIn2'
     export default {
       name: "warning-list",
-
       data(){
         return {
           totalPages: 21,     // 记录总条数
