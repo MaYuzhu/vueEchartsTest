@@ -9,7 +9,7 @@ import data_early_warning from '../pages/data_early_warning/data_early_warning.v
 import device_manage from '../pages/device_manage/device_manage.vue'
 import jiegou_fenxi from '../pages/jiegou_fenxi/jiegou_fenxi.vue'
 
-import testHome from '../pages/testHome.vue'
+import Home from '../pages/Home.vue'
 import warningList from '../pages/warningList.vue'
 
 Vue.use(Router)
@@ -21,7 +21,7 @@ export default new Router({
   routes: [
     {
       path:'/',
-      component:testHome,
+      component:Home,
       meta:{
         showHeader:false
       }
